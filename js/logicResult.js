@@ -1,0 +1,5 @@
+
+
+function logicResult() {
+
+} //end logicResult
