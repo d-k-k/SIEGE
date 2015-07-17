@@ -1,8 +1,7 @@
-Dylan - Ruler and Dictator
 
 Nick - logicGame.js (Collision Detection)
 
-
+Sam - createEntity.js (DB)
 
 
 
