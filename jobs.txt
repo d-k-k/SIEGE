@@ -1,3 +1,5 @@
+Dylan - Ruler and Dictator
+
 Nick - logicMenu.js
 
 
