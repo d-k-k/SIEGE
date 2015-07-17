@@ -1,4 +1,3 @@
-Dylan - Ruler and Dictator
 
 Nick - logicGame.js (Collision Detection)
 
