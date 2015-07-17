@@ -1,6 +1,6 @@
 Dylan - Ruler and Dictator
 
-Nick - logicMenu.js
+Nick - logicGame.js (Collision Detection)
 
 
 
