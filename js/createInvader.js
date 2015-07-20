@@ -48,6 +48,9 @@ function suicideInvaderAI() {
  *  AI for controlling how the invaders will shoot.
  */
 function shootingAI() {
-
+    if (Math.random() < 10) {
+        var shootingAlien = aliens[Math.round(Math.random() * (aliens.length - 1))];
+        // Make shootingAlien shoot
+    }
 }
 
