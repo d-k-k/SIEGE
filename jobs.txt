@@ -1,5 +1,5 @@
 
-Nick - logicGame.js (Collision Detection)
+Nick - logicGame.js, logicMenu.js, logicResult.js
 
 Sam - createEntity.js (DB)
 
