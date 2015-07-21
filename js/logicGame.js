@@ -3,7 +3,6 @@ function logicGame() {
     player2Update();
     invadersUpdate();
     onscreenVisuals();
-    collisionEffects();
 } //end logicGame
 
 function player1Update() {
