@@ -22,15 +22,15 @@ function createInvader(invadeType) {
 	
 	ent.moveUpdate = function () {//calls the invaderMoveAI or suicideInvaderAI to handle movement
 		if(ent.invaderType == 1) {
-			call invaderMoveAI.call(ent);
+			invaderMoveAI.call(ent);
 		}
 		else if (ent.invaderType == 2) {
-			call suicideInvaderAI.call(ent);
+			suicideInvaderAI.call(ent);
 		}
 	};
 	
 	ent.shoot = function () {//calls the shootingAI function to handle shots 
-		call shootingAI.call(ent);
+		shootingAI.call(ent);
 	};
 
 	ent.getHitBox = function () {//based off the center point of the sprite image. Hit box should be around the sprite, not the sprite itself
@@ -101,7 +101,7 @@ function invaderMoveAI() {
         maxY = Math.max(maxY, alien.y);
         minY = Math.min(minY, alien.y);
     }
-    if (maxY > (game.height - 10 - alienHeight/2) || minY < (10 + alienHeight/2) {
+    if (maxY > (game.height - 10 - alienHeight/2) || minY < (10 + alienHeight/2) ) {
         for (var i = 0; i < aliens.length; i++) {
             if (alien.isAlive === false) {
                 continue;

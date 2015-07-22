@@ -20,6 +20,8 @@ function createPlayer(shootingDirection) {
 	ent.speed = 3;
 	ent.maxShootBullets = 1;
 
+	createPlayerVisual( ent );
+
 	ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)];
 
 	ent.shoot = function () {
@@ -29,11 +31,11 @@ function createPlayer(shootingDirection) {
 					break;
 				} else if (ent.shootingDirection == "right") {
 					ent.allBullets[i].isAlive = true;
-					ent.allBullets[i].spawnAt(ent.x + (1/2)width + 1, ent.y);
+					ent.allBullets[i].spawnAt(ent.x + width/2 + 1, ent.y);
 					counterShoot++;
 				} else if (ent.shootingDirection == "left") {
 					ent.allBullets[i].isAlive = true;
-					ent.allBullets[i].spawnAt(ent.x - (1/2)width - 1, ent.y);
+					ent.allBullets[i].spawnAt(ent.x - width/2 - 1, ent.y);
 					counterShoot++;
 				};
 			};
@@ -97,6 +99,30 @@ function createPlayer(shootingDirection) {
 	return ent; //DONT FORGET THIS
 
 } //end createPlayer
+
+
+
+function createPlayerVisual(ref) {
+	ref.vGroup = new Konva.Group();
+
+	ref.vSprite = new Konva.Sprite({
+		x: -ref.width/2,
+		y: -ref.height/2
+	});
+
+	if(ref.shootingDirection === 'left') {
+		ref.vSprite.image = allSpriteObjects['player1'];
+	}
+
+
+	ref.vGroup.add(ref.vSprite);
+} //end createPlayerVisual
+
+
+
+
+
+
 
 
 
