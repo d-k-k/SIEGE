@@ -19,13 +19,13 @@ function objectCountUpdate() {
     }
     
     /* Adds all live player bullets */
-    for(int i = 0; i < player1.allBullets.length; i++) {
+    for(var i = 0; i < player1.allBullets.length; i++) {
         if(player1.allBullets[i].isAlive) {
             playerCollisions.push(player1.allBullets[i]);
             invaderCollisions.push(player1.allBullets[i]);
         }
     }
-    for(int i = 0; i < player2.allBullets.length; i++) {
+    for(var i = 0; i < player2.allBullets.length; i++) {
         if(player2.allBullets[i].isAlive) {
             playerCollisions.push(player2.allBullets[i]);
             invaderCollisions.push(player1.allBullets[i]);
@@ -33,11 +33,11 @@ function objectCountUpdate() {
     }
     
     /* Adds all live invader and their bullets */
-    for(int i = 0; i < allInvaders.length; i++) {
+    for(var i = 0; i < allInvaders.length; i++) {
         if(allInvaders[j].isAlive) {
             playerCollisions.push(allInvaders[i]);
         }
-        for(int j = 0; j < allInvaders[i].allBullets.length; j++) {
+        for(var j = 0; j < allInvaders[i].allBullets.length; j++) {
             if(allInvaders[i].allBullets[j].isAlive) {
                 playerCollisions.push(allInvaders[i].allBullets[j]);
             }
