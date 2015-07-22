@@ -101,7 +101,7 @@ function createPlayer(shootingDirection) {
 } //end createPlayer
 
 
-
+// Create player sprite and add it to group
 function createPlayerVisual(ref) {
 	ref.vGroup = new Konva.Group();
 
@@ -110,12 +110,15 @@ function createPlayerVisual(ref) {
 		y: -ref.height/2
 	});
 
-	if(ref.shootingDirection === 'left') {
-		ref.vSprite.image = allSpriteObjects['player1'];
-	}
-
-
 	ref.vGroup.add(ref.vSprite);
+
+	if(ref.shootingDirection === 'left') {
+		ref.vSprite.image = allSpriteObjects['player2'];
+		ref.vGroup.rotate(90);
+	}else{
+		ref.vSprite.image = allSpriteObjects['player1'];
+		ref.vGroup.rotate(-90);
+	}
 } //end createPlayerVisual
 
 

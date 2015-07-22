@@ -41,6 +41,9 @@ function setupSpriteImageObjects() {
 	allSpriteObjects['player1'] = new Image();
 	allSpriteObjects['player1'].src = 'assets/aircraft_1.png';
 
+	allSpriteObjects['player2'] = new Image();
+	allSpriteObjects['player2'].src = 'assets/aircraft_3.png';
+
 
 } //end setupSpriteImageObjects
 

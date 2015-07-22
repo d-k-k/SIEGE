@@ -117,6 +117,10 @@ function invaderMoveAI() {
     }
 }
 
+// Create invader sprite and add it to group
+function createInvaderVisual(ref){
+
+}
 
 /**
  *  AI for suicide invaders.
