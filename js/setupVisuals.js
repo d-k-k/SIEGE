@@ -80,50 +80,50 @@ function setupGameVisuals() {
 	allGameVisuals.midLayer = {};
 	allGameVisuals.frontLayer = {};
 
-	var amv = allGameVisuals.backLayer;
+	var agv = allGameVisuals.backLayer;
 
-	amv.title = new Konva.Text({
+	agv.title = new Konva.Text({
 		text: 'In Game',
 		fontSize: 30,
 		fontFamily: 'Arial',
 		fill: 'greem'
 	});
-	amv.title.x( cCanvasWidth/2 - amv.title.getTextWidth()/2 );
-	amv.title.y( cCanvasHeight/2 - amv.title.getTextHeight()/2 );
+	agv.title.x( cCanvasWidth/2 - agv.title.getTextWidth()/2 );
+	agv.title.y( cCanvasHeight/2 - agv.title.getTextHeight()/2 );
 
 
-	amv = allGameVisuals.midLayer();
+	agv = allGameVisuals.midLayer();
 
 	//create players
 	for(var i = 0; i < 2; i++) {
 		var dir;
 		if(i == 0) {dir = 'left';} else { dir = 'right';}
 		allPlayers.push( createPlayer(dir) );
-		amv[ 'pGroup' + i ] = allPlayers[ allPlayers.length -1 ].vGroup;
+		agv[ 'pGroup' + i ] = allPlayers[ allPlayers.length -1 ].vGroup;
 
 		//need to figure out how to get bullets.
 		for(var b = 0; b < allPlayers[ allPlayers.length -1 ].allBullets.length; b++) {
-			amv['pbGroup' + i + b] = allPlayers[ allPlayers.length -1 ].allBullets[i].vGroup;
+			agv['pbGroup' + i + b] = allPlayers[ allPlayers.length -1 ].allBullets[i].vGroup;
 		}
 	}
 
 	//create invaders
 	for(var i = 0; i < leftInvaders; i++) {
 		allInvaders.push( createInvader(1) );
-		amv[ 'invGroupL' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
+		agv[ 'invGroupL' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
 
 		//need to figure out how to get bullets.
 		for(var b = 0; b < allInvaders[ allInvaders.length -1 ].allBullets.length; b++) {
-			amv['invbLGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[i].vGroup;
+			agv['invbLGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[i].vGroup;
 		}
 	}
 	for(var i = 0; i < rightInvaders; i++) {
 		allInvaders.push( createInvader(1) );
-		amv[ 'invGroupR' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
+		agv[ 'invGroupR' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
 
 		//need to figure out how to get bullets.
 		for(var b = 0; b < allInvaders[ allInvaders.length -1 ].allBullets.length; b++) {
-			amv['invbRGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[i].vGroup;
+			agv['invbRGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[i].vGroup;
 		}
 	}
 
