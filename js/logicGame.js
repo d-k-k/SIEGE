@@ -1,10 +1,49 @@
+var playerCollisions = [];
+var invaderCollisions = [];
+
 function logicGame() {
+    objectCountUpdate();
     player1Update();
     player2Update();
     invadersUpdate();
     onscreenVisuals();
-    collisionEffects();
 } //end logicGame
+
+function objectCountUpdate() {
+    /* Adds players */
+    if(player1.isAlive) {
+        invaderCollisions.push(player1);
+    }
+    if(player2.isAlive) {
+        invaderCollisions.push(player2);
+    }
+    
+    /* Adds all live player bullets */
+    for(var i = 0; i < player1.allBullets.length; i++) {
+        if(player1.allBullets[i].isAlive) {
+            playerCollisions.push(player1.allBullets[i]);
+            invaderCollisions.push(player1.allBullets[i]);
+        }
+    }
+    for(var i = 0; i < player2.allBullets.length; i++) {
+        if(player2.allBullets[i].isAlive) {
+            playerCollisions.push(player2.allBullets[i]);
+            invaderCollisions.push(player1.allBullets[i]);
+        }
+    }
+    
+    /* Adds all live invader and their bullets */
+    for(var i = 0; i < allInvaders.length; i++) {
+        if(allInvaders[j].isAlive) {
+            playerCollisions.push(allInvaders[i]);
+        }
+        for(var j = 0; j < allInvaders[i].allBullets.length; j++) {
+            if(allInvaders[i].allBullets[j].isAlive) {
+                playerCollisions.push(allInvaders[i].allBullets[j]);
+            }
+        }
+    }
+}
 
 function player1Update() {
     /* Move checks */
@@ -13,14 +52,6 @@ function player1Update() {
     }
     if(player1.rightKeyDown) {
         player1.moveUpdate(right);
-    }
-
-    /* Shot checks */
-    if(player1.isShooting) {
-        if(player1.bulletCount < 3) {
-            player1.shoot();
-        }
-        player1.isShooting == false;
     }
         
     /* Collision Detection */
@@ -38,14 +69,6 @@ function player2Update() {
         player2.moveUpdate(right);
     }
     
-    /* Shot checks */
-    if(player2.isShooting) {
-        if(player2.bulletCount < 3) {
-            player2.shoot();
-        }
-        player2.isShooting == false;
-    }
-        
     /* Collision Detection */
     if(player1.getHitBox() /* .overlaps?? */ ) {
         collisionEffects(player1, someObject);
