@@ -1,6 +1,21 @@
+/*
+createInvader.js
 
+createInvader() 
+-default width and height need to be updated
+-default x and y need to be updated
+-default speed is tentative
+-Death() sprite removal needs to be added
+-Death() suicider spawning needs to be added
+*/
+
+/*
+creates an invader.
+
+invadeType - this determines what sort of invader is created, i.e. suicide
+*/
 function createInvader(invadeType) {
-	var ent = {};
+	var ent = createEntity();//this is the invader being created
 
 	ent.x = -100;//the default x ordinance of entity
 	ent.y = -100;//the default y ordinance of entity
@@ -9,15 +24,16 @@ function createInvader(invadeType) {
 	ent.speed = 5;//TBD: testing required?
 	ent.moveDirection = 'none';//up down left right
 	ent.hp = 1;//For now everything will have 1 hp
-	ent.type = "invader";//
+	ent.type = "invader";//this names what sort of entity, such as player or bullet
 	isAlive = true;//invader is alive
 	
 	ent.invaderType = invadeType;//1 being normal, or 2 being suicide
 	ent.collisionDamage = 1;//amount of damage dealt of collision
 	ent.intervalShoot = 500;//minimum time between shots in ms
-	ent.counterShoot = 0;//?
-	ent.allBullets = [{}, {}, {}]; //?
-	ent.maxShootsBullets = 3;//max number of bullets an invader has
+	ent.counterShoot = 0;//amount of shots active
+    //array containing this invader's bullets
+	ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)]; //?
+	ent.maxShootsBullets = 3;//max number of bullets an invader may fire at once
 
 	
 	ent.moveUpdate = function () {//calls the invaderMoveAI or suicideInvaderAI to handle movement
@@ -29,30 +45,17 @@ function createInvader(invadeType) {
 		}
 	};
 	
-	ent.shoot = function () {//calls the shootingAI function to handle shots 
+    /**
+    calls the shootingAI function to handle shots 
+    */
+	ent.shoot = function () {
 		call shootingAI.call(ent);
 	};
-
-	ent.getHitBox = function () {//based off the center point of the sprite image. Hit box should be around the sprite, not the sprite itself
-		var rect = {};//create hit box object
-
-		rect.x = this.x;//copy over dimensions and position
-		rect.y = this.y;
-		rect.width = this.width;
-		rect.height = this.height;
-
-		return rect;//return the hitbox object
-	}; //end getHitBox
-
-	ent.damage = function (amountOfDamageBeingTaken) {
-		var currentHp = ent.hp;//gets current hp
-		currentHp = currentHp - amountOfDamageBeingTaken;//calculates damage
-		if (currentHp == 0 || currentHp < 0) {//hp check
-			ent.isAlive = false;//sets isAlive to false
-			ent.death();//call to the Death function 
-		}
-	};
 	
+    /**
+    this updates isAlive variable to false. Stops movement and sets speed to 0. 
+    Sprite removal needs to be added.
+    */
 	ent.death = function () {
 		ent.isAlive = false;//set isAlive to false
 		ent.speed = 0;//set speed to 0
@@ -65,19 +68,23 @@ function createInvader(invadeType) {
 		//remove sprite code here
 	};
 	
+    /**
+    Move the invader's x and y values to the given parameters
+
+    centerXvalue - the x value of the center of the invader
+    centerXvalue - the Y value of the center of the invader
+    */
 	ent.spawnAt = function (centerXvalue, centerYvalue) {//spawns invaders at location
 		ent.x = centerXvalue;
 		ent.y = centerYvalue;
 	};
 	
-	ent.dealCollisionDamage = function () {//currently the same as damage. (for future explosions)
-		var currentHp = ent.hp;//gets current hp
-		currentHp = currentHp - collisionDamage;//calculates damage
-		if (currentHp == 0 || currentHp < 0) {//hp check
-			ent.isAlive = false;//sets isAlive to false
-			ent.death();//call to the Death function 
-		}
-	};
+    /**
+    calls damage function of whatever entity is hit
+    */
+	ent.dealCollisionDamage = function (entityHit) {
+        entityHit.Damage(collisionDamage);//calls damage function if whatever it hits
+    }
 
 	
 	return ent; //DONT FORGET THIS

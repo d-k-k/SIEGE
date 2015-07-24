@@ -1,6 +1,18 @@
+/*
+createPlayer.js
 
-/*---------------------------------------------------------------------------------------------------------
-Creates a player game object
+createPlayer() 
+-default width and height need to be updated
+-default x and y need to be updated
+-default speed is tentative
+-Death() sprite removal needs to be added
+-moveUpdate() visuals need to be added
+*/
+
+/*
+creates a player.
+
+shooting direction - this determines which way the play shoots
 */
 function createPlayer(shootingDirection) {
 	var ent = createEntity();
@@ -9,29 +21,34 @@ function createPlayer(shootingDirection) {
 	ent.y = -100;//the defualt y ordinance of entity
 	ent.width = -1;//How wide the entity is
 	ent.height = -1;//How tall the entity is 
-	ent.speed = -1;//movement speed
+	ent.speed = 5;//movement speed
 	ent.hp = 1;//For now everything will have 1 hp
-	ent.type = "player";
+	ent.type = "player";//this names what sort of entity, such as player or bullet
 	ent.shootingDirection = shootingDirection;
-	ent.moveDirection = 'none';
+	ent.moveDirection = 'none';//up & down?
 	isAlive = true;//Are you still alive bro?
-	ent.intervalShoot = 500; //milliseconds
-	ent.counterShoot = 0;
-	ent.speed = 3;
-	ent.maxShootBullets = 1;
-
+	ent.intervalShoot = 500; //milliseconds between shots
+	ent.counterShoot = 0;//amount of shots active
+	ent.speed = 3;//speed of movement
+	ent.maxShootBullets = 1;//max number of bullets a player may fire at once
+	//array containing this players bullets
 	ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)];
 
+	/**
+	used to shoot bullets.
+	*/
 	ent.shoot = function () {
+		//if the player is allowed to shoot more shots
 		if (ent.counterShoot < ent.maxShootBullets) {
+			//find an avaiable bullet, one where isAlive is false
 			for (var i = 0; i < ent.allBullets.length; i++) {
 				if(ent.allBullets[i].isAlive) {
-					break;
-				} else if (ent.shootingDirection == "right") {
+				//will do nothing if the found bullet isAlive
+				} else if (ent.shootingDirection == "right") {//spawns bullet fir left player
 					ent.allBullets[i].isAlive = true;
 					ent.allBullets[i].spawnAt(ent.x + (1/2)width + 1, ent.y);
 					counterShoot++;
-				} else if (ent.shootingDirection == "left") {
+				} else if (ent.shootingDirection == "left") {//spawns bullet for right player
 					ent.allBullets[i].isAlive = true;
 					ent.allBullets[i].spawnAt(ent.x - (1/2)width - 1, ent.y);
 					counterShoot++;
@@ -39,7 +56,9 @@ function createPlayer(shootingDirection) {
 			};
 		};
 	}
-
+	/**
+	controls movement for the player
+	*/
 	ent.moveUpdate = function () {
 		switch (this.moveDirection) {
 
@@ -62,6 +81,10 @@ function createPlayer(shootingDirection) {
 
 	} //end moveUpdate
 
+	/**
+	this updates isAlive variable to false. Stops movement and sets speed to 0. 
+	Sprite removal needs to be added.
+	*/
 	ent.Death = function () {
 		ent.isAlive = false;//set isAlive to false
 		ent.speed = 0;//set speed to 0
@@ -69,26 +92,12 @@ function createPlayer(shootingDirection) {
 		//remove sprite code here
 	};
 
-	ent.getHitBox = function () {//based off the center point of the sprite image. Hit box should be around the sprite, not the sprite itself
-		var rect = {};//create hit box object
+    /**
+    Move the player's x and y values to the given parameters
 
-		rect.x = this.x;//copy over dimensions and position
-		rect.y = this.y;
-		rect.width = this.width;
-		rect.height = this.height;
-
-		return rect;//return the hitbox object
-	}; //end getHitBox
-
-	ent.Damage = function (amountOfDamageBeingTaken) {
-		var currentHp = ent.hp;//gets current hp
-		currentHP = currentHp - amountOfDamageBeingTaken;//calculates damage
-		if (currentHp == 0 || currentHp < 0) {//hp check
-			ent.isAlive = false;//sets isAlive to false
-			ent.Death();//call to the Death function 
-		}
-	};
-	
+    centerXvalue - the x value of the center of the player
+    centerXvalue - the Y value of the center of the player
+    */
 	ent.spawnAt = function (centerXvalue, centerYvalue) {
 		ent.x = centerYvalue;
 		ent.y = centerYvalue;
