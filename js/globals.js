@@ -1,14 +1,10 @@
-
-
 //---------------------------------------------------------------------------------------------------------
 //Debug
 //If this goes false, the only console output should be error.
 //Do include more specific forms of debug checks to help segregate output.
 
 //Example: if(debug) {console.log( 'spam' );}
-
 var debug = true;
-
 var debugMu = true;
 
 
@@ -17,6 +13,8 @@ var debugMu = true;
 //Note: constants prefixed with lowercase 'c'. Why? Cuz autocomplete.
 
 var cMainUpdaterInterval = 10; //should be in ms
+var cCanvasWidth = 800;  //only for testing on low res laptops.
+var cCanvasHeight = 600;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -29,5 +27,33 @@ var gsResult = 'gsResult';  //does js have enums? or maybe make a class with var
 
 
 //---------------------------------------------------------------------------------------------------------
+// Canvas related
+var stage		= null;
+var backLayer	= null;
+var midLayer	= null;
+var frontLayer 	= null;
+
+var allMenuVisuals = null;
+var allGameVisuals = null;
+var allResultVisuals = null;
+
+var allSpriteObjects = null;
+
+
 
 //---------------------------------------------------------------------------------------------------------
+//data structures
+var allPlayers 	= null;
+var allInvaders = null;
+
+
+
+
+//---------------------------------------------------------------------------------------------------------
+//misc
+var keyboardKeys	= {};
+
+
+
+
+

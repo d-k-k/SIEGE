@@ -38,18 +38,23 @@ function createInvader(invadeType) {
 	
 	ent.moveUpdate = function () {//calls the invaderMoveAI or suicideInvaderAI to handle movement
 		if(ent.invaderType == 1) {
-			call invaderMoveAI.call(ent);
+			invaderMoveAI.call(ent);
 		}
 		else if (ent.invaderType == 2) {
-			call suicideInvaderAI.call(ent);
+			suicideInvaderAI.call(ent);
 		}
 	};
 	
+<<<<<<< HEAD
     /**
     calls the shootingAI function to handle shots 
     */
 	ent.shoot = function () {
 		call shootingAI.call(ent);
+=======
+	ent.shoot = function () {//calls the shootingAI function to handle shots 
+		shootingAI.call(ent);
+>>>>>>> origin/master
 	};
 	
     /**
@@ -108,7 +113,7 @@ function invaderMoveAI() {
         maxY = Math.max(maxY, alien.y);
         minY = Math.min(minY, alien.y);
     }
-    if (maxY > (game.height - 10 - alienHeight/2) || minY < (10 + alienHeight/2) {
+    if (maxY > (game.height - 10 - alienHeight/2) || minY < (10 + alienHeight/2) ) {
         for (var i = 0; i < aliens.length; i++) {
             if (alien.isAlive === false) {
                 continue;
@@ -124,6 +129,10 @@ function invaderMoveAI() {
     }
 }
 
+// Create invader sprite and add it to group
+function createInvaderVisual(ref){
+
+}
 
 /**
  *  AI for suicide invaders.

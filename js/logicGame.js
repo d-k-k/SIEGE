@@ -1,89 +1,35 @@
-var playerCollisions = [];
-var invaderCollisions = [];
+/*---------------------------------------------------------
+    logicGame()
+*/
 
+/* Updates everything needed in-game: entity movements, entity collision checks,
+   On-Screen Visuals (score, time, etc.). */
 function logicGame() {
-    objectCountUpdate();
-    player1Update();
-    player2Update();
-    invadersUpdate();
+    /* Updates movement for all entities */
+    for(var i = 0; i < allEntities.length; i++) {
+        allEntities[i].moveUpdate();
+        
+        /* Checks for overlap and triggers effects if true */
+        for(var j = 0; j < allEntities.length; j++) {
+            if(overlap(allEntities[i], allEntities[j])) {
+                collisionEffects(allEntities[i], allEntities[j]);
+            }
+        } //end inner for
+    } //end outer for
+    
     onscreenVisuals();
 } //end logicGame
 
-function objectCountUpdate() {
-    /* Adds players */
-    if(player1.isAlive) {
-        invaderCollisions.push(player1);
-    }
-    if(player2.isAlive) {
-        invaderCollisions.push(player2);
-    }
+/* Checks for individual object overlap */
+function overlap(object1, object2)
+{
     
-    /* Adds all live player bullets */
-    for(var i = 0; i < player1.allBullets.length; i++) {
-        if(player1.allBullets[i].isAlive) {
-            playerCollisions.push(player1.allBullets[i]);
-            invaderCollisions.push(player1.allBullets[i]);
-        }
-    }
-    for(var i = 0; i < player2.allBullets.length; i++) {
-        if(player2.allBullets[i].isAlive) {
-            playerCollisions.push(player2.allBullets[i]);
-            invaderCollisions.push(player1.allBullets[i]);
-        }
-    }
-    
-    /* Adds all live invader and their bullets */
-    for(var i = 0; i < allInvaders.length; i++) {
-        if(allInvaders[j].isAlive) {
-            playerCollisions.push(allInvaders[i]);
-        }
-        for(var j = 0; j < allInvaders[i].allBullets.length; j++) {
-            if(allInvaders[i].allBullets[j].isAlive) {
-                playerCollisions.push(allInvaders[i].allBullets[j]);
-            }
-        }
-    }
 }
-
-function player1Update() {
-    /* Move checks */
-    if(player1.leftKeyDown) {
-        player1.moveUpdate(left);
-    }
-    if(player1.rightKeyDown) {
-        player1.moveUpdate(right);
-    }
-        
-    /* Collision Detection */
-    if(player1.getHitBox() /* .overlaps?? */ ) {
-        collisionEffects(player1, someObject);
-    }
-}
-
-function player2Update() {
-    /* Move checks */
-    if(player2.leftKeyDown) {
-        player2.moveUpdate(left);
-    }
-    if(player2.rightKeyDown) {
-        player2.moveUpdate(right);
-    }
-    
-    /* Collision Detection */
-    if(player1.getHitBox() /* .overlaps?? */ ) {
-        collisionEffects(player1, someObject);
-    }
-}
-
-function invadersUpdate() {
-//  TODO: move - complex, bulletmove, shoot
-}
-	
+/* Updates all On-Screen Visuals, mainly the score counter and time countdown */	
 function onscreenVisuals() {
-//  TODO: main draw call
-    updateTime();
-    updatescore();
-}
+/* TODO: updateTime(); 
+         updatescore(); */;
+} //end onscreenVisuals
 
 function collisionEffects(object1, object2) {
     /* Checks if player is hit by any bullet or invader */
@@ -133,4 +79,4 @@ function collisionEffects(object1, object2) {
             //TODO: Death animation
         }
     }
-}
+} //end collisionEffects

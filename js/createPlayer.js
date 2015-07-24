@@ -27,11 +27,21 @@ function createPlayer(shootingDirection) {
 	ent.shootingDirection = shootingDirection;
 	ent.moveDirection = 'none';//up & down?
 	isAlive = true;//Are you still alive bro?
+<<<<<<< HEAD
 	ent.intervalShoot = 500; //milliseconds between shots
 	ent.counterShoot = 0;//amount of shots active
 	ent.speed = 3;//speed of movement
 	ent.maxShootBullets = 1;//max number of bullets a player may fire at once
 	//array containing this players bullets
+=======
+	ent.intervalShoot = 500; //milliseconds
+	ent.counterShoot = 0;
+	ent.speed = 3;
+	ent.maxShootBullets = 1;
+
+	createPlayerVisual( ent );
+
+>>>>>>> origin/master
 	ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)];
 
 	/**
@@ -46,11 +56,11 @@ function createPlayer(shootingDirection) {
 				//will do nothing if the found bullet isAlive
 				} else if (ent.shootingDirection == "right") {//spawns bullet fir left player
 					ent.allBullets[i].isAlive = true;
-					ent.allBullets[i].spawnAt(ent.x + (1/2)width + 1, ent.y);
+					ent.allBullets[i].spawnAt(ent.x + width/2 + 1, ent.y);
 					counterShoot++;
 				} else if (ent.shootingDirection == "left") {//spawns bullet for right player
 					ent.allBullets[i].isAlive = true;
-					ent.allBullets[i].spawnAt(ent.x - (1/2)width - 1, ent.y);
+					ent.allBullets[i].spawnAt(ent.x - width/2 - 1, ent.y);
 					counterShoot++;
 				};
 			};
@@ -106,6 +116,33 @@ function createPlayer(shootingDirection) {
 	return ent; //DONT FORGET THIS
 
 } //end createPlayer
+
+
+// Create player sprite and add it to group
+function createPlayerVisual(ref) {
+	ref.vGroup = new Konva.Group();
+
+	ref.vSprite = new Konva.Sprite({
+		x: -ref.width/2,
+		y: -ref.height/2
+	});
+
+	ref.vGroup.add(ref.vSprite);
+
+	if(ref.shootingDirection === 'left') {
+		ref.vSprite.image = allSpriteObjects['player2'];
+		ref.vGroup.rotate(90);
+	}else{
+		ref.vSprite.image = allSpriteObjects['player1'];
+		ref.vGroup.rotate(-90);
+	}
+} //end createPlayerVisual
+
+
+
+
+
+
 
 
 

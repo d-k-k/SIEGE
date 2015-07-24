@@ -6,10 +6,21 @@ This should be the first function to activate.
 
 */
 function main() {
+	keyboardBinder();
 
+	setupKonvaCanvas();
+
+	setupSpriteImageObjects();
+
+	setupMenuVisuals();
+	setupGameVisuals();
+
+	placeScreenVisuals( allMenuVisuals );
 
 	gameState = gsMenu;
 	setInterval(mainUpdater, cMainUpdaterInterval);
+
+
 
 } //end main
 
@@ -38,4 +49,18 @@ function mainUpdater() {
 			console.log('Error: unknown game state:' + gameState);
 			break;
 	}
+	stage.draw();
 } //end mainUpdater
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------
+function keyboardBinder() {
+	document.addEventListener('keydown', handleKeyDown);
+	document.addEventListener('keyup', handleKeyUp);
+}
+function handleKeyDown(event) { keyboardKeys[event.keyCode] = 'down'; }
+function handleKeyUp(event) { keyboardKeys[event.keyCode] = 'up'; }
+
