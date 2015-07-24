@@ -7,6 +7,8 @@ createBullet()
 -default speed is tentative
 -Death() sprite removal needs to be added
 -moveUpdate() visuals need to be added
+
+
 */
 
 /*
@@ -20,8 +22,8 @@ function createBullet(shootingDirection, Owner) {
 
     ent.x = -100;//the default x ordinance of entity
     ent.y = -100;//the defualt y ordinance of entity
-    ent.width = -1;//How wide the entity is
-    ent.height = -1;//How tall the entity is 
+    ent.width = 16;//How wide the entity is
+    ent.height = 16;//How tall the entity is 
     ent.speed = 5;//movement speed
     ent.moveDirection = shootingDirection;//this determines which way the bullet moves
     ent.hp = 1;//For now everything will have 1 hp
@@ -29,6 +31,8 @@ function createBullet(shootingDirection, Owner) {
     ent.Owner = Owner; //either player or invader
     ent.damageValue = 1;
     isAlive = false;//bullets are default not alive
+
+    createBulletVisual( ent );
 
     /**
     controls movement for the player
@@ -84,4 +88,24 @@ function createBullet(shootingDirection, Owner) {
         ent.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x
 
-}
+    return ent; //DONT FORGET THIS.
+
+} // createBullet
+
+
+/*
+This will create bullet visuals.
+*/
+function createBulletVisual(ref) {
+    ref.vGroup = new Konva.Group();
+
+    ref.vSprite = new Konva.Sprite({
+        x: -ref.width/2,
+        y: -ref.height/2,
+        image: allSpriteObjects['bullet']
+    });
+    ref.vGroup.add(ref.vSprite);
+
+} //end createBulletVisual
+
+

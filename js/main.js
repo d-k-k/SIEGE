@@ -26,7 +26,7 @@ This is the update loop.
 */
 function mainUpdater() {
 
-	if(debugMu) { console.log('spam'); }
+	if(debugMu) { console.log('spam'); } //for sanity checking that the update loop works
 
 	switch(gameState) {
 		case gsMenu:

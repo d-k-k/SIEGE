@@ -35,7 +35,11 @@ function createPlayer(shootingDirection) {
 	createPlayerVisual( ent );
 
 	//array containing this players bullets
-	ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)];
+	//ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)];
+	ent.allBullets = [];
+	for(var i = 0; i < 3; i++) {
+		ent.allBullets.push( createBullet(shootingDirection, ent) );
+	}
 
 	/**
 	used to shoot bullets.
