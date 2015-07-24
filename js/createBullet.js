@@ -22,8 +22,8 @@ function createBullet(shootingDirection, Owner) {
 
     ent.x = -100;//the default x ordinance of entity
     ent.y = -100;//the defualt y ordinance of entity
-    ent.width = 16;//How wide the entity is
-    ent.height = 16;//How tall the entity is 
+    ent.width = cBulletWidth;//How wide the entity is
+    ent.height = cBulletHeight;//How tall the entity is 
     ent.speed = 5;//movement speed
     ent.moveDirection = shootingDirection;//this determines which way the bullet moves
     ent.hp = 1;//For now everything will have 1 hp
@@ -95,6 +95,8 @@ function createBullet(shootingDirection, Owner) {
 
 /*
 This will create bullet visuals.
+
+Only called within this file.
 */
 function createBulletVisual(ref) {
     ref.vGroup = new Konva.Group();

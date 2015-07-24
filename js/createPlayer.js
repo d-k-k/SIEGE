@@ -19,8 +19,8 @@ function createPlayer(shootingDirection) {
 
 	ent.x = -100;//the default x ordinance of entity
 	ent.y = -100;//the defualt y ordinance of entity
-	ent.width = -1;//How wide the entity is
-	ent.height = -1;//How tall the entity is 
+	ent.width = cPlayerWidth;//How wide the entity is
+	ent.height = cPlayerHeight;//How tall the entity is 
 	ent.speed = 5;//movement speed
 	ent.hp = 1;//For now everything will have 1 hp
 	ent.type = "player";//this names what sort of entity, such as player or bullet
@@ -68,7 +68,6 @@ function createPlayer(shootingDirection) {
 	*/
 	ent.moveUpdate = function () {
 		switch (this.moveDirection) {
-
 			case 'up':
 				this.y -= speed;
 			break;
@@ -84,7 +83,7 @@ function createPlayer(shootingDirection) {
 
 
 		//need to update visuals.
-
+		this.moveVisualsToCoordinates();
 
 	} //end moveUpdate
 
@@ -94,7 +93,7 @@ function createPlayer(shootingDirection) {
 	*/
 	ent.Death = function () {
 		ent.isAlive = false;//set isAlive to false
-		ent.speed = 0;//set speed to 0
+		//ent.speed = 0;//set speed to 0 //why is speed getting killed?
 		ent.direction = "none";//set direction to none
 		//remove sprite code here
 	};
@@ -108,6 +107,7 @@ function createPlayer(shootingDirection) {
 	ent.spawnAt = function (centerXvalue, centerYvalue) {
 		ent.x = centerYvalue;
 		ent.y = centerYvalue;
+
 	};//takes parameters of where you want to spawn entity	
 
 	return ent; //DONT FORGET THIS
@@ -115,7 +115,10 @@ function createPlayer(shootingDirection) {
 } //end createPlayer
 
 
-// Create player sprite and add it to group
+/* 
+Create player sprite and add it to group
+Only called within this file.
+*/
 function createPlayerVisual(ref) {
 	ref.vGroup = new Konva.Group();
 

@@ -5,8 +5,9 @@
 setupKonvaCanvas()
 setupSpriteImageObjects()
 
-function setupMenuVisuals() 
-function setupGameVisuals() 
+setupMenuVisuals() 
+setupGameVisuals() 
+setupResultVisuals()
 
 placeScreenVisuals()
 
@@ -169,6 +170,7 @@ function setupResultVisuals() {
 
 /*------------------------------------------------------------------------------------------------------
 Use to switch all visuals to specified visual object.
+Does clear out all visual from the layers.
 */
 function placeScreenVisuals( allScreenVisuals ) {
 	removeAllChildrenFromLayers();

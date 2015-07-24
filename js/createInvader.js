@@ -19,8 +19,8 @@ function createInvader(invadeType) {
 
 	ent.x = -100;//the default x ordinance of entity
 	ent.y = -100;//the default y ordinance of entity
-	ent.width = -1;//Based on invader image given, to be changed later	
-	ent.height = -1;//based on invader image given, to be changed later
+	ent.width = cInvaderWidth;//Based on invader image given, to be changed later	
+	ent.height = cInvaderHeight;//based on invader image given, to be changed later
 	ent.speed = 5;//TBD: testing required?
 	ent.moveDirection = 'none';//up down left right
 	ent.hp = 1;//For now everything will have 1 hp

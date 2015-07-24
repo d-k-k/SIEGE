@@ -1,10 +1,19 @@
 /*---------------------------------------------------------
-    logicGame()
+    
+logicGame()
+
+prepAndSwitchToGame()
+
 */
 
 /* Updates everything needed in-game: entity movements, entity collision checks,
    On-Screen Visuals (score, time, etc.). */
 function logicGame() {
+
+    for(var i = 0; i < allPlayers.length; i++) {
+        allPlayers[i].moveUpdate();
+    }
+
     /* Updates movement for all entities */
     for(var i = 0; i < allEntities.length; i++) {
         allEntities[i].moveUpdate();
@@ -71,3 +80,41 @@ function collisionEffects(object1, object2) {
         object2.damage(1);
     }
 } //end collisionEffects
+
+
+/*
+Calling this will perform all effects necessary to start a new game.
+Resets all entities.
+Correctly places and preps(spawn).
+Switches visuals.
+*/
+function prepAndSwitchToGame() {
+
+    prepGamePlayerPosition();
+
+    placeScreenVisuals( allGameVisuals );
+} //end prepAndSwitchToGame
+
+//place players correctly.
+function prepGamePlayerPosition() {
+    var p;
+    for(var i = 0; i < allPlayers.length ; i++) {
+        p = allPlayers[i];
+        if(p.moveDirection === 'left') {
+            p.spawnAt( cP1StartingX, cP1StartingY );
+        }
+        else if( p.moveDirection === 'right' ) {
+            p.spawnAt( cP2StartingX, cP2StartingY );
+        }
+    }
+
+} //prepGamePlayerPosition
+
+
+
+
+
+
+
+
+
