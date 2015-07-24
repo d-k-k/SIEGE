@@ -45,16 +45,8 @@ function createInvader(invadeType) {
 		}
 	};
 	
-<<<<<<< HEAD
-    /**
-    calls the shootingAI function to handle shots 
-    */
-	ent.shoot = function () {
-		call shootingAI.call(ent);
-=======
 	ent.shoot = function () {//calls the shootingAI function to handle shots 
 		shootingAI.call(ent);
->>>>>>> origin/master
 	};
 	
     /**

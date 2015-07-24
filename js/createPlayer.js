@@ -27,13 +27,6 @@ function createPlayer(shootingDirection) {
 	ent.shootingDirection = shootingDirection;
 	ent.moveDirection = 'none';//up & down?
 	isAlive = true;//Are you still alive bro?
-<<<<<<< HEAD
-	ent.intervalShoot = 500; //milliseconds between shots
-	ent.counterShoot = 0;//amount of shots active
-	ent.speed = 3;//speed of movement
-	ent.maxShootBullets = 1;//max number of bullets a player may fire at once
-	//array containing this players bullets
-=======
 	ent.intervalShoot = 500; //milliseconds
 	ent.counterShoot = 0;
 	ent.speed = 3;
@@ -41,7 +34,7 @@ function createPlayer(shootingDirection) {
 
 	createPlayerVisual( ent );
 
->>>>>>> origin/master
+	//array containing this players bullets
 	ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)];
 
 	/**

@@ -103,7 +103,7 @@ function setupGameVisuals() {
 	agv.title.y( cCanvasHeight/2 - agv.title.getTextHeight()/2 );
 
 
-	agv = allGameVisuals.midLayer();
+	agv = allGameVisuals.midLayer;
 
 	//create players
 	for(var i = 0; i < 2; i++) {

@@ -43,8 +43,8 @@ var allSpriteObjects = null;
 
 //---------------------------------------------------------------------------------------------------------
 //data structures
-var allPlayers 	= null;
-var allInvaders = null;
+var allPlayers 	= [];
+var allInvaders = [];
 
 
 
