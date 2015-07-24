@@ -3,8 +3,12 @@
 /* ------------------------------------------------------------------------------------------------------------------
 
 setupKonvaCanvas()
-placeScreenVisuals()
+setupSpriteImageObjects()
 
+function setupMenuVisuals() 
+function setupGameVisuals() 
+
+placeScreenVisuals()
 
 */
 
@@ -34,6 +38,8 @@ function setupKonvaCanvas() {
 
 /*
 One time call from main.
+Load all necessary image objects here so there is only 1 object, and many things  can reference it.
+Doing this saves time and memory.
 */
 function setupSpriteImageObjects() {
 	allSpriteObjects = {};
@@ -51,6 +57,7 @@ function setupSpriteImageObjects() {
 
 /*
 One time call from main.
+Creates all visuals to be used in the menu gameState.
 */
 function setupMenuVisuals() {
 
@@ -75,6 +82,7 @@ function setupMenuVisuals() {
 
 /*
 One time call from main.
+Creates all visuals to be used in the game gameState.
 */
 function setupGameVisuals() {
 
@@ -135,6 +143,20 @@ function setupGameVisuals() {
 } //end setupGameVisuals
 
 
+
+/*
+One time call from main.
+Creates all visuals to be used in the result gameState.
+*/
+function setupResultVisuals() {
+
+	allResultVisuals = {};
+	allResultVisuals.backLayer = {};
+	allResultVisuals.midLayer = {};
+	allResultVisuals.frontLayer = {};
+
+
+} //end setupResultVisuals
 
 
 
