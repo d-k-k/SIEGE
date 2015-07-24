@@ -51,9 +51,18 @@ var cInvaderHeight = 64;
 
 //vars to dictate creation and placement.
 var cP1StartingX = 100;
-var cP1StartingY = cCanvasHeight/2;
-var cP2StartingX = 100;
-var cP2StartingY = cCanvasHeight/2;
+var cP1StartingY = cCanvasHeight/2 - cPlayerHeight/2;
+var cP2StartingX = cCanvasWidth - 100 - cPlayerWidth;
+var cP2StartingY = cCanvasHeight/2 - cPlayerHeight/2;
+//invader globals to control spawn
+var cInvSpawnHeightGap = cInvaderHeight/2; //basically shots get a half miss zone.
+var cInvSpawnWidthGap = cInvaderWidth/2; 
+var cInvRowSize = 5; //these numbers can and will be changed.
+var cInvColSize = 5;
+var cInvRightSpawnStartX = cCanvasWidth/2 + cInvaderWidth; //the right invader starts off 1 width away from the middle
+var cInvRightSpawnStartY = cInvaderHeight;
+var cInvLeftSpawnStartX = cInvRightSpawnStartX - (cInvaderHeight * 2) - ( cInvRowSize * (cInvaderHeight + cInvSpawnHeightGap));
+var cInvLeftSpawnStartY = cInvRightSpawnStartY; //start them in the same formation, but would be better if they crossed.
 
 
 
