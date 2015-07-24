@@ -1,6 +1,7 @@
 
+Nick - logicGame.js (Collision Detection)
 
-
+Sam - createEntity.js (DB)
 
 
 
