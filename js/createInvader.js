@@ -88,6 +88,43 @@ function createInvader(invadeType) {
 
 }
 
+// Create invader sprite and add it to group
+function createInvaderVisual(ref){
+	ref.vGroup = new Konva.Group();
+
+	ref.vSprite = new Konva.Sprite({
+		x: -ref.width/2,
+		y: -ref.height/2,
+		frameRate: 7,
+		frameIndex: 0
+	});
+
+	ref.vGroup.add(ref.vSprite);
+
+	/*
+	It needs to rotate acording to which player it will attack
+
+	ref.vGroup.rotate(90 or -90);
+	
+	*/
+
+
+	if(ref.invaderType === 1){
+		var animations = {
+			idle: [
+				0, 0, 64, 64,
+				64, 0, 64, 64
+			]
+		};
+
+		ref.vSprite.image = allSpriteObjects['enemy1'];
+		ref.vSprite.animation = 'idle';
+		ref.vSprite.animations = animations;
+	}
+
+	ref.vSprite.start();
+}
+
 
 /**
  *  AI for moving invaders.
@@ -119,11 +156,6 @@ function invaderMoveAI() {
             }
         }
     }
-}
-
-// Create invader sprite and add it to group
-function createInvaderVisual(ref){
-
 }
 
 /**
