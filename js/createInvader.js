@@ -74,15 +74,18 @@ function createInvader(invadeType) {
 	};
 	
     /**
-    Move the invader's x and y values to the given parameters
+    Move the bullet's x and y values to the given parameters. 
+    Sets hp to 1, and isAlive to true.
 
-    centerXvalue - the x value of the center of the invader
-    centerXvalue - the Y value of the center of the invader
+    centerXvalue - the x value of the center of the bullet
+    centerXvalue - the Y value of the center of the bullet
     */
-	ent.spawnAt = function (centerXvalue, centerYvalue) {//spawns invaders at location
-		ent.x = centerXvalue;
-		ent.y = centerYvalue;
-	};
+    ent.spawnAt = function (centerXvalue, centerYvalue) {
+        ent.hp = 1;
+        ent.isAlive = true;
+        ent.x = centerYvalue;
+        ent.y = centerYvalue;
+    };//takes parameters of where you want to spawn entity x
 	
     /**
     calls damage function of whatever entity is hit

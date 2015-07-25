@@ -103,15 +103,18 @@ function createPlayer(shootingDirection) {
 	};
 
     /**
-    Move the player's x and y values to the given parameters
+    Move the bullet's x and y values to the given parameters. 
+    Sets hp to 1, and isAlive to true.
 
-    centerXvalue - the x value of the center of the player
-    centerXvalue - the Y value of the center of the player
+    centerXvalue - the x value of the center of the bullet
+    centerXvalue - the Y value of the center of the bullet
     */
-	ent.spawnAt = function (centerXvalue, centerYvalue) {
-		ent.x = centerYvalue;
-		ent.y = centerYvalue;
-	};//takes parameters of where you want to spawn entity	
+    ent.spawnAt = function (centerXvalue, centerYvalue) {
+        ent.hp = 1;
+        ent.isAlive = true;
+        ent.x = centerYvalue;
+        ent.y = centerYvalue;
+    };//takes parameters of where you want to spawn entity x	
 
 	return ent; //DONT FORGET THIS
 
