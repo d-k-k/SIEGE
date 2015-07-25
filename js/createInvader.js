@@ -117,7 +117,7 @@ function createInvaderVisual(ref){
 			]
 		};
 
-		ref.vSprite.image = allSpriteObjects['enemy1'];
+		ref.vSprite.image(allSpriteObjects['enemy1']);
 		ref.vSprite.animation = 'idle';
 		ref.vSprite.animations = animations;
 	}

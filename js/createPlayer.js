@@ -131,7 +131,7 @@ function createPlayerVisual(ref) {
 		y: -ref.height/2,
 		width: ref.width,
 		height: ref.height,
-		image: allSpriteObjects['player1'],
+		/*image: allSpriteObjects['player1'],*/
 		animation: 'idle',
 		animations: {
 			idle: [
@@ -145,11 +145,11 @@ function createPlayerVisual(ref) {
 	ref.vGroup.add(ref.vSprite);
 
 	if(ref.shootingDirection === 'left') {
-		ref.vSprite.image = allSpriteObjects['player2'];
-		ref.vGroup.rotate(90);
-	}else{
-		ref.vSprite.image = allSpriteObjects['player1'];
+		ref.vSprite.image(allSpriteObjects['player2']);
 		ref.vGroup.rotate(-90);
+	}else{
+		ref.vSprite.image(allSpriteObjects['player1']);
+		ref.vGroup.rotate(90);
 	}
 	ref.vSprite.start();
 } //end createPlayerVisual
