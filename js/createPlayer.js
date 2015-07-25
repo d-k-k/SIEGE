@@ -112,10 +112,10 @@ function createPlayer(shootingDirection) {
     */
 <<<<<<< HEAD
     ent.spawnAt = function (centerXvalue, centerYvalue) {
-        ent.hp = 1;
-        ent.isAlive = true;
-        ent.x = centerYvalue;
-        ent.y = centerYvalue;
+        this.hp = 1;
+        this.isAlive = true;
+        this.x = centerYvalue;
+        this.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x	
 >>>>>>> origin/master
 
