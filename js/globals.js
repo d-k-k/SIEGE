@@ -30,7 +30,9 @@ misc - everything else
 
 //Example: if(debug) {console.log( 'spam' );}
 var debug = true;
-var debugMu = true;
+var debugMu = false;
+var debugLogicGame = false;
+var debugPlayerCreate = true;
 
 
 //---------------------------------------------------------------------------------------------------------

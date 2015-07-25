@@ -56,6 +56,7 @@ function createBullet(shootingDirection, Owner) {
             //need to update visuals.
         };
 
+        moveVisualsToCoordinates();
 
     } //end moveUpdate
     
@@ -104,9 +105,20 @@ function createBulletVisual(ref) {
     ref.vSprite = new Konva.Sprite({
         x: -ref.width/2,
         y: -ref.height/2,
-        image: allSpriteObjects['bullet']
+        image: allSpriteObjects['bullet'],
+        width: cBulletWidth,
+        height: cBulletHeight,
+        animation: 'idle',
+        animations: {
+            idle: [
+                0,0,ref.width,ref.height
+            ]
+        },
+        frameRate: 1,
+        frameIndex: 0
     });
     ref.vGroup.add(ref.vSprite);
+    ref.vSprite.start();
 
 } //end createBulletVisual
 

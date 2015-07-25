@@ -9,25 +9,27 @@ prepAndSwitchToGame()
 /* Updates everything needed in-game: entity movements, entity collision checks,
    On-Screen Visuals (score, time, etc.). */
 function logicGame() {
-
+    if(debugLogicGame) { console.log('logic game spam' ); }
+    //
     for(var i = 0; i < allPlayers.length; i++) {
         allPlayers[i].moveUpdate();
     }
 
-    /* Updates movement for all entities */
-    for(var i = 0; i < allEntities.length; i++) {
-        allEntities[i].moveUpdate();
+    //Comented out, all entities doesn't exist.
+    // /* Updates movement for all entities */
+    // for(var i = 0; i < allEntities.length; i++) {
+    //     allEntities[i].moveUpdate();
         
-        /* Checks for overlap and triggers effects if true */
-        for(var j = 0; j < allEntities.length; j++) {
-            if(allEntities[i] == allEntities[j]) {
-                continue; //continue loop if same entity
-            }
-            if(overlap(allEntities[i], allEntities[j])) {
-                collisionEffects(allEntities[i], allEntities[j]);
-            }
-        } //end inner for
-    } //end outer for
+    //     /* Checks for overlap and triggers effects if true */
+    //     for(var j = 0; j < allEntities.length; j++) {
+    //         if(allEntities[i] == allEntities[j]) {
+    //             continue; //continue loop if same entity
+    //         }
+    //         if(overlap(allEntities[i], allEntities[j])) {
+    //             collisionEffects(allEntities[i], allEntities[j]);
+    //         }
+    //     } //end inner for
+    // } //end outer for
     
     onscreenVisuals();
 } //end logicGame
@@ -93,6 +95,9 @@ function prepAndSwitchToGame() {
     prepGamePlayerPosition();
 
     placeScreenVisuals( allGameVisuals );
+
+    gameState = gsGame;
+
 } //end prepAndSwitchToGame
 
 //place players correctly.
@@ -100,13 +105,15 @@ function prepGamePlayerPosition() {
     var p;
     for(var i = 0; i < allPlayers.length ; i++) {
         p = allPlayers[i];
-        if(p.moveDirection === 'left') {
+        if(p.shootingDirection === 'right') {
             p.spawnAt( cP1StartingX, cP1StartingY );
         }
-        else if( p.moveDirection === 'right' ) {
+        else if( p.shootingDirection === 'left' ) {
             p.spawnAt( cP2StartingX, cP2StartingY );
         }
     }
+
+    if(debug) {console.dir(allPlayers);}
 
 } //prepGamePlayerPosition
 

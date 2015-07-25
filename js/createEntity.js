@@ -80,6 +80,7 @@ function createEntity() {
 	ent.moveVisualsToCoordinates = function () {
 		this.vGroup.x( this.x );
 		this.vGroup.y( this.y );
+
 	};
 
 

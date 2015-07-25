@@ -26,6 +26,18 @@ function setupKonvaCanvas() {
 		container: 'topdiv'
 	});
 
+	var grayBacking = new Konva.Layer();
+	stage.add(grayBacking);
+
+	var grayback = new Konva.Rect({
+		x:0,
+		y:0,
+		width:cCanvasWidth,
+		height:cCanvasHeight,
+		fill: 'lightgray'
+	});
+	grayBacking.add(grayback);
+
 	backLayer = new Konva.Layer();
 	stage.add(backLayer);
 
@@ -111,7 +123,7 @@ function setupGameVisuals() {
 	//create players
 	for(var i = 0; i < 2; i++) {
 		var dir;
-		if(i == 0) {dir = 'left';} else { dir = 'right';}
+		if(i == 0) {dir = 'right';} else { dir = 'left';}
 		allPlayers.push( createPlayer(dir) );
 		agv[ 'pGroup' + i ] = allPlayers[ allPlayers.length -1 ].vGroup;
 

@@ -46,18 +46,18 @@ function createPlayer(shootingDirection) {
 	*/
 	ent.shoot = function () {
 		//if the player is allowed to shoot more shots
-		if (ent.counterShoot < ent.maxShootBullets) {
+		if (this.counterShoot < this.maxShootBullets) {
 			//find an avaiable bullet, one where isAlive is false
-			for (var i = 0; i < ent.allBullets.length; i++) {
-				if(ent.allBullets[i].isAlive) {
+			for (var i = 0; i < this.allBullets.length; i++) {
+				if(this.allBullets[i].isAlive) {
 				//will do nothing if the found bullet isAlive
-				} else if (ent.shootingDirection == "right") {//spawns bullet fir left player
-					ent.allBullets[i].isAlive = true;
-					ent.allBullets[i].spawnAt(ent.x + width/2 + 1, ent.y);
+				} else if (this.shootingDirection == "right") {//spawns bullet fir left player
+					this.allBullets[i].isAlive = true;
+					this.allBullets[i].spawnAt(this.x + width/2 + 1, this.y);
 					counterShoot++;
-				} else if (ent.shootingDirection == "left") {//spawns bullet for right player
-					ent.allBullets[i].isAlive = true;
-					ent.allBullets[i].spawnAt(ent.x - width/2 - 1, ent.y);
+				} else if (this.shootingDirection == "left") {//spawns bullet for right player
+					this.allBullets[i].isAlive = true;
+					this.allBullets[i].spawnAt(this.x - width/2 - 1, this.y);
 					counterShoot++;
 				};
 			};
@@ -69,10 +69,10 @@ function createPlayer(shootingDirection) {
 	ent.moveUpdate = function () {
 		switch (this.moveDirection) {
 			case 'up':
-				this.y -= speed;
+				this.y -= this.speed;
 			break;
 			case 'down':
-				this.y += speed;
+				this.y += this.speed;
 			break;
 			case 'none':
 			break;
@@ -81,9 +81,14 @@ function createPlayer(shootingDirection) {
 			break;
 		} //end switch moveDirection
 
+		if(this.y < 0) { this.y = 0; }
+		else if(this.y > cCanvasHeight) { this.y = cCanvasHeight; }
+
 
 		//need to update visuals.
 		this.moveVisualsToCoordinates();
+
+		//if(debugPlayerCreate) { console.log( 'player update location: ' + this.x + ',' + this.y + '. and sprite: ' + this.vGroup.x() + ',' + this.vGroup.y()  ); }
 
 	} //end moveUpdate
 
@@ -92,9 +97,9 @@ function createPlayer(shootingDirection) {
 	Sprite removal needs to be added.
 	*/
 	ent.Death = function () {
-		ent.isAlive = false;//set isAlive to false
+		this.isAlive = false;//set isAlive to false
 		//ent.speed = 0;//set speed to 0 //why is speed getting killed?
-		ent.direction = "none";//set direction to none
+		this.direction = "none";//set direction to none
 		//remove sprite code here
 	};
 
@@ -105,9 +110,8 @@ function createPlayer(shootingDirection) {
     centerXvalue - the Y value of the center of the player
     */
 	ent.spawnAt = function (centerXvalue, centerYvalue) {
-		ent.x = centerYvalue;
-		ent.y = centerYvalue;
-
+		this.x = centerXvalue;
+		this.y = centerYvalue;
 	};//takes parameters of where you want to spawn entity	
 
 	return ent; //DONT FORGET THIS
@@ -124,7 +128,18 @@ function createPlayerVisual(ref) {
 
 	ref.vSprite = new Konva.Sprite({
 		x: -ref.width/2,
-		y: -ref.height/2
+		y: -ref.height/2,
+		width: ref.width,
+		height: ref.height,
+		image: allSpriteObjects['player1'],
+		animation: 'idle',
+		animations: {
+			idle: [
+				0,0,ref.width,ref.height
+			]
+		},
+		frameRate: 1,
+		frameIndex: 0
 	});
 
 	ref.vGroup.add(ref.vSprite);
@@ -136,6 +151,7 @@ function createPlayerVisual(ref) {
 		ref.vSprite.image = allSpriteObjects['player1'];
 		ref.vGroup.rotate(-90);
 	}
+	ref.vSprite.start();
 } //end createPlayerVisual
 
 
