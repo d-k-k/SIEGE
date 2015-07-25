@@ -3,8 +3,13 @@
 /* ------------------------------------------------------------------------------------------------------------------
 
 setupKonvaCanvas()
-placeScreenVisuals()
+setupSpriteImageObjects()
 
+setupMenuVisuals() 
+setupGameVisuals() 
+setupResultVisuals()
+
+placeScreenVisuals()
 
 */
 
@@ -21,6 +26,18 @@ function setupKonvaCanvas() {
 		container: 'topdiv'
 	});
 
+	var grayBacking = new Konva.Layer();
+	stage.add(grayBacking);
+
+	var grayback = new Konva.Rect({
+		x:0,
+		y:0,
+		width:cCanvasWidth,
+		height:cCanvasHeight,
+		fill: 'lightgray'
+	});
+	grayBacking.add(grayback);
+
 	backLayer = new Konva.Layer();
 	stage.add(backLayer);
 
@@ -34,6 +51,8 @@ function setupKonvaCanvas() {
 
 /*
 One time call from main.
+Load all necessary image objects here so there is only 1 object, and many things  can reference it.
+Doing this saves time and memory.
 */
 function setupSpriteImageObjects() {
 	allSpriteObjects = {};
@@ -44,6 +63,11 @@ function setupSpriteImageObjects() {
 	allSpriteObjects['player2'] = new Image();
 	allSpriteObjects['player2'].src = 'assets/aircraft_3.png';
 
+	allSpriteObjects['bullet'] = new Image();
+	allSpriteObjects['bullet'].src = 'assets/shoot_simple.png';
+
+	allSpriteObjects['enemy1'] = new Image();
+	allSpriteObjects['enemy1'].src = 'assets/enemy_1_animation.png';
 
 } //end setupSpriteImageObjects
 
@@ -51,6 +75,7 @@ function setupSpriteImageObjects() {
 
 /*
 One time call from main.
+Creates all visuals to be used in the menu gameState.
 */
 function setupMenuVisuals() {
 
@@ -75,6 +100,7 @@ function setupMenuVisuals() {
 
 /*
 One time call from main.
+Creates all visuals to be used in the game gameState.
 */
 function setupGameVisuals() {
 
@@ -95,46 +121,60 @@ function setupGameVisuals() {
 	agv.title.y( cCanvasHeight/2 - agv.title.getTextHeight()/2 );
 
 
-	agv = allGameVisuals.midLayer();
+	agv = allGameVisuals.midLayer;
 
 	//create players
 	for(var i = 0; i < 2; i++) {
 		var dir;
-		if(i == 0) {dir = 'left';} else { dir = 'right';}
+		if(i == 0) {dir = 'right';} else { dir = 'left';}
 		allPlayers.push( createPlayer(dir) );
 		agv[ 'pGroup' + i ] = allPlayers[ allPlayers.length -1 ].vGroup;
 
-		//need to figure out how to get bullets.
+		//need to get bullets visuals
 		for(var b = 0; b < allPlayers[ allPlayers.length -1 ].allBullets.length; b++) {
-			agv['pbGroup' + i + b] = allPlayers[ allPlayers.length -1 ].allBullets[i].vGroup;
+			agv['pbGroup' + i + b] = allPlayers[ allPlayers.length -1 ].allBullets[b].vGroup;
 		}
 	}
 
-	//create invaders
-	for(var i = 0; i < leftInvaders; i++) {
-		allInvaders.push( createInvader(1) );
-		agv[ 'invGroupL' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
+	// //create invaders
+	// for(var i = 0; i < leftInvaders; i++) {
+	// 	allInvaders.push( createInvader(1) );
+	// 	agv[ 'invGroupL' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
 
-		//need to figure out how to get bullets.
-		for(var b = 0; b < allInvaders[ allInvaders.length -1 ].allBullets.length; b++) {
-			agv['invbLGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[i].vGroup;
-		}
-	}
-	for(var i = 0; i < rightInvaders; i++) {
-		allInvaders.push( createInvader(1) );
-		agv[ 'invGroupR' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
+	// 	//need to get bullets visuals
+	// 	for(var b = 0; b < allInvaders[ allInvaders.length -1 ].allBullets.length; b++) {
+	// 		agv['invbLGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[b].vGroup;
+	// 	}
+	// }
+	// for(var i = 0; i < rightInvaders; i++) {
+	// 	allInvaders.push( createInvader(1) );
+	// 	agv[ 'invGroupR' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
 
-		//need to figure out how to get bullets.
-		for(var b = 0; b < allInvaders[ allInvaders.length -1 ].allBullets.length; b++) {
-			agv['invbRGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[i].vGroup;
-		}
-	}
+	// 	//need to get bullets visuals
+	// 	for(var b = 0; b < allInvaders[ allInvaders.length -1 ].allBullets.length; b++) {
+	// 		agv['invbRGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[b].vGroup;
+	// 	}
+	// }
 
 
 
 } //end setupGameVisuals
 
 
+
+/*
+One time call from main.
+Creates all visuals to be used in the result gameState.
+*/
+function setupResultVisuals() {
+
+	allResultVisuals = {};
+	allResultVisuals.backLayer = {};
+	allResultVisuals.midLayer = {};
+	allResultVisuals.frontLayer = {};
+
+
+} //end setupResultVisuals
 
 
 
@@ -145,6 +185,7 @@ function setupGameVisuals() {
 
 /*------------------------------------------------------------------------------------------------------
 Use to switch all visuals to specified visual object.
+Does clear out all visual from the layers.
 */
 function placeScreenVisuals( allScreenVisuals ) {
 	removeAllChildrenFromLayers();

@@ -72,6 +72,18 @@ function createEntity() {
 	*/
 	ent.spawnAt = function () {console.log("Error entity spawnAt accessed."); };//takes parameters of where you want to spawn entity	
 
+
+	/**
+	Moves the visual group to the entity values.
+	Should be called at the end of move update.
+	*/
+	ent.moveVisualsToCoordinates = function () {
+		this.vGroup.x( this.x );
+		this.vGroup.y( this.y );
+
+	};
+
+
 	return ent; //DONT FORGET THIS
 
 } //end createEntity

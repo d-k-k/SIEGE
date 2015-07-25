@@ -7,6 +7,8 @@ createBullet()
 -default speed is tentative
 -Death() sprite removal needs to be added
 -moveUpdate() visuals need to be added
+
+
 */
 
 /*
@@ -20,8 +22,8 @@ function createBullet(shootingDirection, Owner) {
 
     ent.x = -100;//the default x ordinance of entity
     ent.y = -100;//the defualt y ordinance of entity
-    ent.width = -1;//How wide the entity is
-    ent.height = -1;//How tall the entity is 
+    ent.width = cBulletWidth;//How wide the entity is
+    ent.height = cBulletHeight;//How tall the entity is 
     ent.speed = 5;//movement speed
     ent.moveDirection = shootingDirection;//this determines which way the bullet moves
     ent.hp = 1;//For now everything will have 1 hp
@@ -29,6 +31,8 @@ function createBullet(shootingDirection, Owner) {
     ent.Owner = Owner; //either player or invader
     ent.damageValue = 1;
     isAlive = false;//bullets are default not alive
+
+    createBulletVisual( ent );
 
     /**
     controls movement for the player
@@ -52,6 +56,7 @@ function createBullet(shootingDirection, Owner) {
             //need to update visuals.
         };
 
+        moveVisualsToCoordinates();
 
     } //end moveUpdate
     
@@ -87,4 +92,37 @@ function createBullet(shootingDirection, Owner) {
         ent.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x
 
-}
+    return ent; //DONT FORGET THIS.
+
+} // createBullet
+
+
+/*
+This will create bullet visuals.
+
+Only called within this file.
+*/
+function createBulletVisual(ref) {
+    ref.vGroup = new Konva.Group();
+
+    ref.vSprite = new Konva.Sprite({
+        x: -ref.width/2,
+        y: -ref.height/2,
+        image: allSpriteObjects['bullet'],
+        width: cBulletWidth,
+        height: cBulletHeight,
+        animation: 'idle',
+        animations: {
+            idle: [
+                0,0,ref.width,ref.height
+            ]
+        },
+        frameRate: 1,
+        frameIndex: 0
+    });
+    ref.vGroup.add(ref.vSprite);
+    ref.vSprite.start();
+
+} //end createBulletVisual
+
+

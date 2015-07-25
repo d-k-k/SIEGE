@@ -19,8 +19,8 @@ function createInvader(invadeType) {
 
 	ent.x = -100;//the default x ordinance of entity
 	ent.y = -100;//the default y ordinance of entity
-	ent.width = -1;//Based on invader image given, to be changed later	
-	ent.height = -1;//based on invader image given, to be changed later
+	ent.width = cInvaderWidth;//Based on invader image given, to be changed later	
+	ent.height = cInvaderHeight;//based on invader image given, to be changed later
 	ent.speed = 5;//TBD: testing required?
 	ent.moveDirection = 'none';//up down left right
 	ent.hp = 1;//For now everything will have 1 hp
@@ -45,16 +45,8 @@ function createInvader(invadeType) {
 		}
 	};
 	
-<<<<<<< HEAD
-    /**
-    calls the shootingAI function to handle shots 
-    */
-	ent.shoot = function () {
-		call shootingAI.call(ent);
-=======
 	ent.shoot = function () {//calls the shootingAI function to handle shots 
 		shootingAI.call(ent);
->>>>>>> origin/master
 	};
 	
     /**
@@ -99,6 +91,43 @@ function createInvader(invadeType) {
 
 }
 
+// Create invader sprite and add it to group
+function createInvaderVisual(ref){
+	ref.vGroup = new Konva.Group();
+
+	ref.vSprite = new Konva.Sprite({
+		x: -ref.width/2,
+		y: -ref.height/2,
+		frameRate: 7,
+		frameIndex: 0
+	});
+
+	ref.vGroup.add(ref.vSprite);
+
+	/*
+	It needs to rotate acording to which player it will attack
+
+	ref.vGroup.rotate(90 or -90);
+	
+	*/
+
+
+	if(ref.invaderType === 1){
+		var animations = {
+			idle: [
+				0, 0, 64, 64,
+				64, 0, 64, 64
+			]
+		};
+
+		ref.vSprite.image(allSpriteObjects['enemy1']);
+		ref.vSprite.animation = 'idle';
+		ref.vSprite.animations = animations;
+	}
+
+	ref.vSprite.start();
+}
+
 
 /**
  *  AI for moving invaders.
@@ -130,11 +159,6 @@ function invaderMoveAI() {
             }
         }
     }
-}
-
-// Create invader sprite and add it to group
-function createInvaderVisual(ref){
-
 }
 
 /**

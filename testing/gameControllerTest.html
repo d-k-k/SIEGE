@@ -96,9 +96,13 @@ function checkGpForInput() {
     for(var i = 0; i < allGamepads.length; i++) {
         if(i == 2) { break; }
 
-        if(allGamepads[i].buttons.length) {
+        var currentGp = allGamepads[i];
+
+        if( currentGp.buttons[2].pressed ) {
             
         }
+
+
 
     }
 
