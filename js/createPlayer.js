@@ -117,11 +117,6 @@ function createPlayer(shootingDirection) {
         ent.x = centerYvalue;
         ent.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x	
-=======
-	ent.spawnAt = function (centerXvalue, centerYvalue) {
-		this.x = centerXvalue;
-		this.y = centerYvalue;
-	};//takes parameters of where you want to spawn entity	
 >>>>>>> origin/master
 
 	return ent; //DONT FORGET THIS
