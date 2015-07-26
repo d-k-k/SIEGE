@@ -38,7 +38,7 @@ function createBullet(shootingDirection, Owner) {
     controls movement for the player
     */
     ent.moveUpdate = function () {
-        if (this.isAlive) {
+        if (ent.isAlive) {
             switch (this.moveDirection) {
                 case 'left':
                     this.x += speed;
@@ -65,9 +65,9 @@ function createBullet(shootingDirection, Owner) {
     Sprite removal needs to be added.
     */
     ent.Death = function () {
-        this.isAlive = false;//set isAlive to false
-        this.speed = 0;//set speed to 0
-        this.direction = "none";//set direction to none
+        ent.isAlive = false;//set isAlive to false
+        ent.speed = 0;//set speed to 0
+        ent.direction = "none";//set direction to none
         //remove sprite code here
     };
 
@@ -86,10 +86,10 @@ function createBullet(shootingDirection, Owner) {
     centerXvalue - the Y value of the center of the bullet
     */
     ent.spawnAt = function (centerXvalue, centerYvalue) {
-        this.hp = 1;
-        this.isAlive = true;
-        this.x = centerYvalue;
-        this.y = centerYvalue;
+        ent.hp = 1;
+        ent.isAlive = true;
+        ent.x = centerYvalue;
+        ent.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x
 
     return ent; //DONT FORGET THIS.
