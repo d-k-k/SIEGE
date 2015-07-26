@@ -7,18 +7,28 @@
 function logicGame() {
     /* Updates movement for all entities */
     for(var i = 0; i < allEntities.length; i++) {
-        allEntities[i].moveUpdate();
+        if(allEntities[i].isAlive) {
+            allEntities[i].moveUpdate();
         
-        /* Checks for overlap and triggers effects if true */
-        for(var j = 0; j < allEntities.length; j++) {
-            if(allEntities[i] == allEntities[j]) {
-                continue; //continue loop if same entity
-            }
-            if(overlap(allEntities[i], allEntities[j])) {
-                collisionEffects(allEntities[i], allEntities[j]);
-            }
-        } //end inner for
+            /* Checks for overlap and triggers effects if true */
+            for(var j = 0; j < allEntities.length; j++) {
+                if(allEntities[j].isAlive) {
+                    if(allEntities[i] == allEntities[j]) {
+                        continue; //continue loop if same entity
+                    }
+                    if(overlap(allEntities[i], allEntities[j])) {
+                        collisionEffects(allEntities[i], allEntities[j]);
+                    }
+                }
+            } //end inner for
+        }
     } //end outer for
+    
+    /* Checks for endgame condition, changes to results if true */
+    if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
+        gameState = gsResult;
+        setupResultVisuals();
+    }
     
     onscreenVisuals();
 } //end logicGame
