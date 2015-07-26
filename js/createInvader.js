@@ -37,10 +37,10 @@ function createInvader(invadeType) {
 
 	
 	ent.moveUpdate = function () {//calls the invaderMoveAI or suicideInvaderAI to handle movement
-		if(ent.invaderType == 1) {
+		if(this.invaderType == 1) {
 			invaderMoveAI.call(ent);
 		}
-		else if (ent.invaderType == 2) {
+		else if (this.invaderType == 2) {
 			suicideInvaderAI.call(ent);
 		}
 	};
@@ -54,10 +54,10 @@ function createInvader(invadeType) {
     Sprite removal needs to be added.
     */
 	ent.death = function () {
-		ent.isAlive = false;//set isAlive to false
-		ent.speed = 0;//set speed to 0
-		ent.direction = "none";//set direction to none
-		if(ent.invaderType == 1) {//if the invader that was killed was a normal invader
+		this.isAlive = false;//set isAlive to false
+		this.speed = 0;//set speed to 0
+		this.direction = "none";//set direction to none
+		if(this.invaderType == 1) {//if the invader that was killed was a normal invader
 			if(Math.random() < .15) {//and if it hits the 15% chance of spawning a suicide invader
 				//spawn a suicide invader at its location
 			}
@@ -73,10 +73,10 @@ function createInvader(invadeType) {
     centerXvalue - the Y value of the center of the bullet
     */
     ent.spawnAt = function (centerXvalue, centerYvalue) {
-        ent.hp = 1;
-        ent.isAlive = true;
-        ent.x = centerYvalue;
-        ent.y = centerYvalue;
+        this.hp = 1;
+        this.isAlive = true;
+        this.x = centerYvalue;
+        this.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x
 	
     /**
