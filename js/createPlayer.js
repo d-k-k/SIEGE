@@ -110,15 +110,12 @@ function createPlayer(shootingDirection) {
     centerXvalue - the x value of the center of the bullet
     centerXvalue - the Y value of the center of the bullet
     */
-<<<<<<< HEAD
     ent.spawnAt = function (centerXvalue, centerYvalue) {
         ent.hp = 1;
         ent.isAlive = true;
         ent.x = centerYvalue;
         ent.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x	
->>>>>>> origin/master
-
 	return ent; //DONT FORGET THIS
 
 } //end createPlayer
