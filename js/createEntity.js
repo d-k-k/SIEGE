@@ -48,10 +48,10 @@ function createEntity() {
 	amountOfDamageBeingTaken - the damage received
 	*/
 	ent.Damage = function (amountOfDamageBeingTaken) {
-		var currentHp = ent.hp;//gets current hp
+		var currentHp = this.hp;//gets current hp
 		currentHP = currentHp - amountOfDamageBeingTaken;//calculates damage
 		if (currentHp == 0 || currentHp < 0) {//hp check
-			ent.isAlive = false;//sets isAlive to false
+			this.isAlive = false;//sets isAlive to false
 			ent.Death();//call to the Death function 
 		}
 	};
@@ -61,9 +61,9 @@ function createEntity() {
 	Sprite removal will be unique to each type of entity.
 	*/
 	ent.Death = function () {
-		ent.isAlive = false;//set isAlive to false
-		ent.speed = 0;//set speed to 0
-		ent.direction = "none";//set direction to none
+		this.isAlive = false;//set isAlive to false
+		this.speed = 0;//set speed to 0
+		this.direction = "none";//set direction to none
 		//remove sprite code here
 	};
 	
