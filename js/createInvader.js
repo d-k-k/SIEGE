@@ -150,7 +150,8 @@ function invaderMoveAI() {
             if (alien.isAlive === false) {
                 continue;
             }
-            aliens[i].y += aliens[i].height * (aliens[i].direction * -1);
+            aliens[i].moveDirection = aliens[i].moveDirection * -1;
+            aliens[i].y += aliens[i].height * (aliens[i].moveDirection);
             if (aliens[i].x > game.width/2) {
                 aliens[i].x += aliens[i].width;
             }
