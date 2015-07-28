@@ -1,17 +1,25 @@
 /*---------------------------------------------------------
     logicResult()
+    
+    prepandSwitchToMenu()
 */
 
-/* Checks for conditions to switch back to the menu */
+/* Updates leaderboard */
 function logicResult() {
-    /* Check if name is entered, if so switch to menu */
-    if(nameEntered) { 
-        prepandSwitchToMenu();
+    for(int i = 0; i < allPlayers.length; i++) {
+        for(int j = 0; j < leaderBoard.length; j++) {
+            if(allPlayers[i].score >= leaderBoard[j].score) {
+                /* Shift all leaderBoard scores and insert new score */
+                for(int k = j; k < leaderBoard.length; k++) {
+                    leaderBoard[k + 1] = leaderBoard[k];
+                }
+                leaderBoard[j].score = allPlayers[i].score;
+            }
+        }
     }
 } //end logicResult
 
-/* Changes the game state and sets up the visuals for the menu */
+/* Preps the game */
 function prepandSwitchToMenu() {
-        gameState = gsMenu;
-        setupMenuVisuals();
+    placeScreenVisuals(allMenuVisuals);
 }
