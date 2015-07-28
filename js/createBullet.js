@@ -41,10 +41,10 @@ function createBullet(shootingDirection, Owner) {
         if (this.isAlive) {
             switch (this.moveDirection) {
                 case 'left':
-                    this.x += speed;
+                    this.x -= this.speed;
                 break;
                 case 'right':
-                    this.x -= speed;
+                    this.x += this.speed;
                 break;
                 case 'none':
                 break;
@@ -56,7 +56,7 @@ function createBullet(shootingDirection, Owner) {
             //need to update visuals.
         };
 
-        moveVisualsToCoordinates();
+        this.moveVisualsToCoordinates();
 
     } //end moveUpdate
     
@@ -88,7 +88,7 @@ function createBullet(shootingDirection, Owner) {
     ent.spawnAt = function (centerXvalue, centerYvalue) {
         this.hp = 1;
         this.isAlive = true;
-        this.x = centerYvalue;
+        this.x = centerXvalue;
         this.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x
 

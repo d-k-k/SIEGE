@@ -53,12 +53,12 @@ function createPlayer(shootingDirection) {
 				//will do nothing if the found bullet isAlive
 				} else if (this.shootingDirection == "right") {//spawns bullet fir left player
 					this.allBullets[i].isAlive = true;
-					this.allBullets[i].spawnAt(this.x + width/2 + 1, this.y);
-					counterShoot++;
+					this.allBullets[i].spawnAt(this.x + this.width/2 + 1, this.y);
+					this.counterShoot++;
 				} else if (this.shootingDirection == "left") {//spawns bullet for right player
 					this.allBullets[i].isAlive = true;
-					this.allBullets[i].spawnAt(this.x - width/2 - 1, this.y);
-					counterShoot++;
+					this.allBullets[i].spawnAt(this.x - this.width/2 - 1, this.y);
+					this.counterShoot++;
 				};
 			};
 		};
@@ -84,13 +84,15 @@ function createPlayer(shootingDirection) {
 		if(this.y < 0) { this.y = 0; }
 		else if(this.y > cCanvasHeight) { this.y = cCanvasHeight; }
 
-
+		for(var i = 0; i < this.allBullets.length; i++) {
+			this.allBullets[i].moveUpdate();
+		}
 		//need to update visuals.
 		this.moveVisualsToCoordinates();
 
 		//if(debugPlayerCreate) { console.log( 'player update location: ' + this.x + ',' + this.y + '. and sprite: ' + this.vGroup.x() + ',' + this.vGroup.y()  ); }
 
-	} //end moveUpdate
+	}; //end moveUpdate
 
 	/**
 	this updates isAlive variable to false. Stops movement and sets speed to 0. 
@@ -113,7 +115,7 @@ function createPlayer(shootingDirection) {
     ent.spawnAt = function (centerXvalue, centerYvalue) {
         this.hp = 1;
         this.isAlive = true;
-        this.x = centerYvalue;
+        this.x = centerXvalue;
         this.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x	
 	return ent; //DONT FORGET THIS
