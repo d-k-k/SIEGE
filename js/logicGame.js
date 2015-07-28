@@ -1,35 +1,40 @@
 /*---------------------------------------------------------
     
-logicGame()
-
-prepAndSwitchToGame()
-
+    logicGame()
+    
+    prepAndSwitchToGame()
+    
 */
 
 /* Updates everything needed in-game: entity movements, entity collision checks,
    On-Screen Visuals (score, time, etc.). */
 function logicGame() {
+    
     if(debugLogicGame) { console.log('logic game spam' ); }
-    //
-    for(var i = 0; i < allPlayers.length; i++) {
-        allPlayers[i].moveUpdate();
-    }
-
-    //Comented out, all entities doesn't exist.
-    // /* Updates movement for all entities */
-    // for(var i = 0; i < allEntities.length; i++) {
-    //     allEntities[i].moveUpdate();
+    
+    /* Updates movement for all entities */
+    for(var i = 0; i < allEntities.length; i++) {
+        if(allEntities[i].isAlive) {
+            allEntities[i].moveUpdate();
         
-    //     /* Checks for overlap and triggers effects if true */
-    //     for(var j = 0; j < allEntities.length; j++) {
-    //         if(allEntities[i] == allEntities[j]) {
-    //             continue; //continue loop if same entity
-    //         }
-    //         if(overlap(allEntities[i], allEntities[j])) {
-    //             collisionEffects(allEntities[i], allEntities[j]);
-    //         }
-    //     } //end inner for
-    // } //end outer for
+            /* Checks for overlap and triggers effects if true */
+            for(var j = 0; j < allEntities.length; j++) {
+                if(allEntities[j].isAlive) {
+                    if(allEntities[i] == allEntities[j]) {
+                        continue; //continue loop if same entity
+                    }
+                    if(overlap(allEntities[i], allEntities[j])) {
+                        collisionEffects(allEntities[i], allEntities[j]);
+                    }
+                } 
+            } //end inner for
+        } 
+    } //end outer for
+    
+    /* Checks for endgame condition, changes to results if true */
+    if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
+        prepandSwitchToResult();
+    }
     
     onscreenVisuals();
 } //end logicGame
@@ -51,13 +56,17 @@ function overlap(object1, object2)
            return false;
        }
 }
-/* Updates all On-Screen Visuals, mainly the score counter and time countdown */	
+
+/* Updates all On-Screen Visuals */
 function onscreenVisuals() {
-/* TODO: updateTime(); 
-         updatescore(); */;
+ /* TODO: updateTime(); 
+          updatescore(); */
 } //end onscreenVisuals
 
-function collisionEffects(object1, object2) {
+/* Updates everything needed in-game: entity movements, entity collision checks,
+   On-Screen Visuals (score, time, etc.). */
+function logicGame() {
+    
     /* Checks if player is hit by any bullet or invader */
     if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
         object1.damage(1);
@@ -75,14 +84,13 @@ function collisionEffects(object1, object2) {
     }
     
     /* Checks for boss */
-    else if(object1.type == boss && object2.type == playerBullet) {
+    else if(object1.type == "boss" && object2.type == "playerBullet") {
         object1.damage(1);
     }
-    else if(object1.type == playerBullet && object2.type == boss) {
+    else if(object1.type == "playerBullet" && object2.type == "boss") {
         object2.damage(1);
     }
 } //end collisionEffects
-
 
 /*
 Calling this will perform all effects necessary to start a new game.
@@ -91,7 +99,14 @@ Correctly places and preps(spawn).
 Switches visuals.
 */
 function prepAndSwitchToGame() {
-
+    
+    /* Kills all bullets */
+    for(var i = 0; i < allEntities.length; i++) {
+        if(allEntities[i].type == "bullet") {
+            allEntities[i].isAlive = false;
+        }
+    }
+    
     prepGamePlayerPosition();
 
     placeScreenVisuals( allGameVisuals );
@@ -116,12 +131,3 @@ function prepGamePlayerPosition() {
     if(debug) {console.dir(allPlayers);}
 
 } //prepGamePlayerPosition
-
-
-
-
-
-
-
-
-
