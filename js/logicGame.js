@@ -64,7 +64,8 @@ function onscreenVisuals() {
 } //end onscreenVisuals
 
 /* Determines type and creates appropriate effect */
-function collisionEffects() {
+function collisionEffects(object1, object2) {
+
     
     /* Checks if player is hit by any bullet or invader */
     if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
@@ -136,4 +137,4 @@ function prepGamePlayerPosition() {
 
     if(debug) {console.dir(allPlayers);}
 
-} //prepGamePlayerPosition
+} //end prepGamePlayerPosition
