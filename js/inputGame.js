@@ -9,7 +9,7 @@ function inputGame() {
 
 function inputGameKeyboardBackup() {
 
-	/*
+	
 	//w
 	if(keyboardKeys[87] === 'down') { allPlayers[0].moveDirection = 'up'; }
 	//s
@@ -21,15 +21,20 @@ function inputGameKeyboardBackup() {
 	//k
 	else if(keyboardKeys[75] === 'down') { allPlayers[1].moveDirection = 'down'; }
 	else { allPlayers[1].moveDirection = 'none';}
-	*/
+	
 	
 	var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
 	//var gamepads = navigator.getGamepads();
-	if (!gamepads)
+	if (!gamepads) {
 		return;
+	}
 	var gp = gamepads[0];
+	if(!gp) {
+		return;
+	}
+
 	/*if (gp.axes[1] > 0.9) {//down
-		allPlayers[0].moveDirection = 'down';
+	allPlayers[0].moveDirection = 'down';
 	} else if(gp.axes[1] < -0.9) {//up
 		allPlayers[0].moveDirection = 'up';
 	}

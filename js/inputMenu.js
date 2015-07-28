@@ -3,7 +3,8 @@
 function inputMenu() {
 
 
-	/*if enter key
+	//if enter key
+	/*
 	var gamepads = navigator.getGamepads();//gets all the gamepads
 	
 	for (var i = 0; i < gamepads.length; ++i)//loop through each gamepad
@@ -17,10 +18,10 @@ function inputMenu() {
         if (currentGamepad.buttons[0] === 1) {
 			prepAndSwitchToGame();
 		}
-    }
+    } */
 	if( keyboardKeys[13] === 'down' ) {
 		prepAndSwitchToGame();
-	}*/
+	}
 	
 	var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
 	//var gamepads = navigator.getGamepads();

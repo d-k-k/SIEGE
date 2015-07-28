@@ -100,7 +100,7 @@ function createPlayer(shootingDirection) {
 		//need to update visuals.
 		this.moveVisualsToCoordinates();
 
-		//if(debugPlayerCreate) { console.log( 'player update location: ' + this.x + ',' + this.y + '. and sprite: ' + this.vGroup.x() + ',' + this.vGroup.y()  ); }
+		if(debugPlayerCreate) { console.log( 'player update location: ' + this.x + ',' + this.y + '. and sprite: ' + this.vGroup.x() + ',' + this.vGroup.y()  ); }
 
 	}; //end moveUpdate
 

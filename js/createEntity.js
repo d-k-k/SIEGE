@@ -83,6 +83,7 @@ function createEntity() {
 
 	};
 
+	allEntities.push( ent ); //everything should call this to be created for mechanical updates.
 
 	return ent; //DONT FORGET THIS
 
