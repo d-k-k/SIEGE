@@ -53,6 +53,10 @@ function createBullet(shootingDirection, Owner) {
                 break;
             } //end switch moveDirection
 
+			if(this.x < -20 || this.x > (cCanvasWidth + 20)){
+				this.spawnAt(-100,-100);
+				this.isAlive = false;
+			}
             //need to update visuals.
         };
 
