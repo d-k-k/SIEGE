@@ -65,7 +65,7 @@ function onscreenVisuals() {
 
 /* Updates everything needed in-game: entity movements, entity collision checks,
    On-Screen Visuals (score, time, etc.). */
-function logicGame() {
+function collisionEffects(object1, object2) {
     
     /* Checks if player is hit by any bullet or invader */
     if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
