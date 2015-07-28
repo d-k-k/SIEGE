@@ -63,13 +63,15 @@ function onscreenVisuals() {
           updatescore(); */
 } //end onscreenVisuals
 
-/* Updates everything needed in-game: entity movements, entity collision checks,
-   On-Screen Visuals (score, time, etc.). */
-function logicGame() {
+/* Determines type and creates appropriate effect */
+function collisionEffects() {
     
     /* Checks if player is hit by any bullet or invader */
     if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
         object1.damage(1);
+        if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
+            object2.death();
+        }
     }
     else if((object1.type == "invaderBullet" || object1.type == "invader" || object1.type == "playerBullet") && object2.type == "player") {
         object2.damage(1);
@@ -78,17 +80,21 @@ function logicGame() {
     /* Checks player bullets with invaders */
     else if(object1.type == "invader" && object2.type == "playerBullet") {
         object1.damage(1);
+        object2.death();
     }
     else if(object1.type == "playerBullet" && object2.type == "invader") {
         object2.damage(1);
+        object1.death();
     }
     
     /* Checks for boss */
     else if(object1.type == "boss" && object2.type == "playerBullet") {
         object1.damage(1);
+        object2.death();
     }
     else if(object1.type == "playerBullet" && object2.type == "boss") {
         object2.damage(1);
+        object1.death();
     }
 } //end collisionEffects
 
