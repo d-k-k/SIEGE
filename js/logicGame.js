@@ -27,7 +27,7 @@ function logicGame() {
     /* Checks for endgame condition, changes to results if true */
     if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
         gameState = gsResult;
-        setupResultVisuals();
+        placeScreenVisuals(allResultVisuals);
     }
     
     onscreenVisuals();
