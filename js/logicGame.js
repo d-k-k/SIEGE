@@ -154,20 +154,19 @@ function prepGameInvaderPosition() {
     var xcalc;
     var ycalc;
 
-
-    for (var i = 0; i < cInvColSize; i++) {
-        for (var j = 0; j < cInvRowSize; j++) {
-            xcalc = cInvRightSpawnStartX + (cInvSpawnWidthGap + cInvaderWidth) * i,
-            ycalc = cInvRightSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * j,
-            allInvaders[invCounter].spawnAt(xcalc, ycalc);
-            invCounter++;
-        }
-    }
-
     for (var i = 0; i < cInvColSize; i++) {
         for (var j = 0; j < cInvRowSize; j++) {
             xcalc = cInvLeftSpawnStartX - (cInvSpawnWidthGap + cInvaderWidth) * i,
             ycalc = cInvLeftSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * j,
+            allInvaders[invCounter].spawnAt(xcalc, ycalc);
+            invCounter++;
+        }
+    }
+    
+    for (var i = 0; i < cInvColSize; i++) {
+        for (var j = 0; j < cInvRowSize; j++) {
+            xcalc = cInvRightSpawnStartX + (cInvSpawnWidthGap + cInvaderWidth) * i,
+            ycalc = cInvRightSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * j,
             allInvaders[invCounter].spawnAt(xcalc, ycalc);
             invCounter++;
         }
