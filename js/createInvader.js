@@ -22,7 +22,7 @@ function createInvader(invadeType, shootingDirection) {
 	ent.width = cInvaderWidth;//Based on invader image given, to be changed later	
 	ent.height = cInvaderHeight;//based on invader image given, to be changed later
 	ent.speed = 5;//TBD: testing required?
-	ent.moveDirection = 'none';//up down left right
+	ent.moveDirection = 1;//up down left right
 	ent.hp = 1;//For now everything will have 1 hp
 	ent.type = "invader";//this names what sort of entity, such as player or bullet
 	isAlive = true;//invader is alive
@@ -46,7 +46,7 @@ function createInvader(invadeType, shootingDirection) {
 	
 	ent.moveUpdate = function () {//calls the invaderMoveAI or suicideInvaderAI to handle movement
 		if(this.invaderType == 1) {
-			//invaderMoveAI.call(ent);
+			invaderMoveAI();
 		}
 		else if (this.invaderType == 2) {
 			//suicideInvaderAI.call(ent);
@@ -55,7 +55,7 @@ function createInvader(invadeType, shootingDirection) {
 	};
 	
 	ent.shoot = function () {//calls the shootingAI function to handle shots 
-		shootingAI.call(ent);
+		//shootingAI.call(ent);
 	};
 	
     /**
@@ -71,8 +71,8 @@ function createInvader(invadeType, shootingDirection) {
 			}
 		}
 
-		this.x = -100;
-		this.y = -100;
+		//this.x = -100;
+		//this.y = -100;
 		this.moveVisualsToCoordinates();
 		//remove sprite code here
 	};
@@ -176,12 +176,13 @@ function invaderMoveAI() {
 	}
 	var currentTime = d.getTime();
 
-	if( !(currentTime - invaderLastMoveTime >= cInvaderMoveDelayTime)) {
+	if( currentTime - invaderLastMoveTime < cInvaderMoveDelayTime) {
 		return;
 	}
+	invaderLastMoveTime = currentTime;
 
     var maxY = 0;
-    var minY = 0;
+    var minY = 9999999;
     for (var i = 0; i < allInvaders.length; i++) {
         var alien = allInvaders[i];
         if (alien.isAlive === false) {
@@ -191,7 +192,7 @@ function invaderMoveAI() {
         maxY = Math.max(maxY, alien.y);
         minY = Math.min(minY, alien.y);
     }
-    if (maxY > (cCanvasHeight - 10 - cInvaderHeight/2) || minY < (10 + cInvaderHeight/2) ) {
+    if (maxY > cCanvasHeight - cInvaderHeight || minY < cInvaderHeight ) {
         for (var i = 0; i < allInvaders.length; i++) {
             if (alien.isAlive === false) {
                 continue;

@@ -152,7 +152,7 @@ function createPlayerVisual(ref) {
 		animation: 'idle',
 		animations: {
 			idle: [
-				0,0,ref.width,ref.height
+				0,0,64,64
 			]
 		},
 		frameRate: 1,

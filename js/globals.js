@@ -44,12 +44,12 @@ var cMainUpdaterInterval = 10; //should be in ms
 var cCanvasWidth = 1538;  //only for testing on low res laptops.
 var cCanvasHeight = 860;
 
-var cPlayerWidth = 64;
-var cPlayerHeight = 64;
+var cPlayerWidth = 32;
+var cPlayerHeight = 32;
 var cBulletWidth = 16;
 var cBulletHeight = 16;
-var cInvaderWidth = 64;
-var cInvaderHeight = 64;
+var cInvaderWidth = 32;
+var cInvaderHeight = 32;
 
 
 //vars to dictate creation and placement.
