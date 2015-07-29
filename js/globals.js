@@ -116,6 +116,7 @@ var leaderBoard = [
 
 var cInvaderMoveDelayTime = 1000;
 var invaderLastMoveTime = null;
+var invaderLastShotTime = null;
 
 
 //---------------------------------------------------------------------------------------------------------
