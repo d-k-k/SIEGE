@@ -2,6 +2,23 @@
 
 function inputMenu() {
 
+	inputMenuKeyboardBackup();
+	inputMenuGamePad();
+
+
+
+} //end inputMenu
+
+
+function inputMenuKeyboardBackup() {
+
+	if( keyboardKeys[13] === 'down' ) {
+		prepAndSwitchToGame();
+	}
+}
+
+
+function inputMenuGamePad() {
 
 	//if enter key
 	/*
@@ -19,9 +36,6 @@ function inputMenu() {
 			prepAndSwitchToGame();
 		}
     } */
-	if( keyboardKeys[13] === 'down' ) {
-		prepAndSwitchToGame();
-	}
 	
 	var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
 	//var gamepads = navigator.getGamepads();
@@ -39,13 +53,7 @@ function inputMenu() {
 		prepAndSwitchToGame();
 	}*/
 	
-
-
-} //end inputMenu
-
-function buttonPressed(b) {
-  if (typeof(b) == "object") {
-    return b.pressed;
-  }
-  return b == 1.0;
 }
+
+
+

@@ -3,26 +3,13 @@
 function inputGame() {
 
 	inputGameKeyboardBackup();
+	inputGameGamePad();
 
 
 } //end inputGame
 
-function inputGameKeyboardBackup() {
+function inputGameGamePad() {
 
-	
-	//w
-	if(keyboardKeys[87] === 'down') { allPlayers[0].moveDirection = 'up'; }
-	//s
-	else if(keyboardKeys[83] === 'down') { allPlayers[0].moveDirection = 'down'; }
-	else { allPlayers[0].moveDirection = 'none';}
-
-	//i
-	if(keyboardKeys[73] === 'down') { allPlayers[1].moveDirection = 'up'; }
-	//k
-	else if(keyboardKeys[75] === 'down') { allPlayers[1].moveDirection = 'down'; }
-	else { allPlayers[1].moveDirection = 'none';}
-	
-	
 	var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
 	//var gamepads = navigator.getGamepads();
 	if (!gamepads) {
@@ -61,6 +48,29 @@ function inputGameKeyboardBackup() {
 	if(buttonPressed(gp.buttons[3])) {
 		allPlayers[1].shoot();
 	}
+	
+}
+
+function inputGameKeyboardBackup() {
+
+	
+	//w
+	if(keyboardKeys[87] === 'down') { allPlayers[0].moveDirection = 'up'; }
+	//s
+	else if(keyboardKeys[83] === 'down') { allPlayers[0].moveDirection = 'down'; }
+	else { allPlayers[0].moveDirection = 'none';}
+
+	//i
+	if(keyboardKeys[73] === 'down') { allPlayers[1].moveDirection = 'up'; }
+	//k
+	else if(keyboardKeys[75] === 'down') { allPlayers[1].moveDirection = 'down'; }
+	else { allPlayers[1].moveDirection = 'none';}
+
+	//D
+	if(keyboardKeys[68] === 'down') { allPlayers[0].shoot(); }
+	//J
+	if(keyboardKeys[74] === 'down') { allPlayers[1].shoot(); }
+	
 	
 	
 
