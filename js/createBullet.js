@@ -62,7 +62,7 @@ function createBullet(shootingDirection, Owner) {
 
         this.moveVisualsToCoordinates();
 
-        console.log('spam move bullet');
+        //console.log('spam move bullet');
 
     } //end moveUpdate
     

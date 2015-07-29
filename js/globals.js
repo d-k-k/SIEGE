@@ -40,8 +40,8 @@ var debugPlayerCreate = true;
 //Note: constants prefixed with lowercase 'c'. Why? Cuz autocomplete.
 
 var cMainUpdaterInterval = 10; //should be in ms
-var cCanvasWidth = 800;  //only for testing on low res laptops.
-var cCanvasHeight = 600;
+var cCanvasWidth = 1000;  //only for testing on low res laptops.
+var cCanvasHeight = 400;
 
 var cPlayerWidth = 64;
 var cPlayerHeight = 64;
@@ -54,7 +54,7 @@ var cInvaderHeight = 64;
 //vars to dictate creation and placement.
 var cP1StartingX = 100;
 var cP1StartingY = cCanvasHeight/2 - cPlayerHeight/2;
-var cP2StartingX = cCanvasWidth - 100 - cPlayerWidth;
+var cP2StartingX = cCanvasWidth - 100;
 var cP2StartingY = cCanvasHeight/2 - cPlayerHeight/2;
 //invader globals to control spawn
 var cInvSpawnHeightGap = cInvaderHeight/2; //basically shots get a half miss zone.
