@@ -16,16 +16,21 @@ function logicGame() {
     for(var i = 0; i < allEntities.length; i++) {
         if(allEntities[i].isAlive) {
             allEntities[i].moveUpdate();
-        
-            /* Checks for overlap and triggers effects if true */
-            for(var j = 0; j < allEntities.length; j++) {
-                if(allEntities[j].isAlive) {
-                    if(allEntities[i] == allEntities[j]) {
-                        continue; //continue loop if same entity
-                    }
-                    if(overlap(allEntities[i], allEntities[j])) {
-                        collisionEffects(allEntities[i], allEntities[j]);
-                    }
+        }
+    }
+    
+    for (var i = 0; i < allEntities.length; i++) {    
+        /* Checks for overlap and triggers effects if true */
+        if (allEntities[i].type == "invader") {
+            allEntities[i].shoot();
+        }
+        for(var j = 0; j < allEntities.length; j++) {
+            if(allEntities[j].isAlive) {
+                if(allEntities[i] == allEntities[j]) {
+                    continue; //continue loop if same entity
+                }
+                if(overlap(allEntities[i], allEntities[j])) {
+                    collisionEffects(allEntities[i], allEntities[j]);
                 } 
             } //end inner for
         } 
@@ -150,19 +155,19 @@ function prepGameInvaderPosition() {
     var ycalc;
 
 
-    for (var j = 0; j < cInvColSize; j++) {
-        for (var i = 0; i < cInvRowSize; i++) {
-            xcalc = cInvRightSpawnStartX + (cInvSpawnWidthGap + cInvaderWidth) * j ,
-            ycalc = cInvRightSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * i,
+    for (var i = 0; i < cInvColSize; i++) {
+        for (var j = 0; j < cInvRowSize; j++) {
+            xcalc = cInvRightSpawnStartX + (cInvSpawnWidthGap + cInvaderWidth) * i,
+            ycalc = cInvRightSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * j,
             allInvaders[invCounter].spawnAt(xcalc, ycalc);
             invCounter++;
         }
     }
 
-    for (var j = 0; j < cInvColSize; j++) {
-        for (var i = 0; i < cInvRowSize; i++) {
-            xcalc = cInvLeftSpawnStartX - (cInvSpawnWidthGap + cInvaderWidth) * j ,
-            ycalc = cInvLeftSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * i,
+    for (var i = 0; i < cInvColSize; i++) {
+        for (var j = 0; j < cInvRowSize; j++) {
+            xcalc = cInvLeftSpawnStartX - (cInvSpawnWidthGap + cInvaderWidth) * i,
+            ycalc = cInvLeftSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * j,
             allInvaders[invCounter].spawnAt(xcalc, ycalc);
             invCounter++;
         }
