@@ -22,7 +22,8 @@ function logicResult() {
 /* Preps the game */
 function prepandSwitchToResult() {
     
-    placeScreenVisuals( allResultVisuals );
-    gameState = gsResult;
+  //  placeScreenVisuals( allResultVisuals );
+	
+  //  gameState = gsResult;
     
 } //end prepandSwitchToResult
