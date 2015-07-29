@@ -41,7 +41,7 @@ var debugPlayerCreate = true;
 
 var cMainUpdaterInterval = 10; //should be in ms
 //final res 1535 x 860
-var cCanvasWidth = 1538;  //only for testing on low res laptops.
+var cCanvasWidth = 1535;  //only for testing on low res laptops.
 var cCanvasHeight = 860;
 
 var cPlayerWidth = 32;
@@ -63,7 +63,7 @@ var cInvSpawnWidthGap = cInvaderWidth/2;
 var cInvRowSize = 9; //these numbers can and will be changed.
 var cInvColSize = 5;
 var cInvRightSpawnStartX = cCanvasWidth/2 + cInvaderWidth; //the right invader starts off 1 width away from the middle
-var cInvRightSpawnStartY = cInvaderHeight * 9 / 4;
+var cInvRightSpawnStartY = 94;
 var cInvLeftSpawnStartX = cCanvasWidth/2 - cInvaderWidth;
 var cInvLeftSpawnStartY = cInvRightSpawnStartY; //start them in the same formation, but would be better if they crossed.
 
@@ -116,6 +116,7 @@ var leaderBoard = [
 
 var cInvaderMoveDelayTime = 1000;
 var invaderLastMoveTime = null;
+var invaderLastShotTime = null;
 
 
 //---------------------------------------------------------------------------------------------------------

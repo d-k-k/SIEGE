@@ -55,7 +55,7 @@ function createInvader(invadeType, shootingDirection) {
 	};
 	
 	ent.shoot = function () {//calls the shootingAI function to handle shots 
-		//shootingAI.call(ent);
+		shootingAI();
 	};
 	
     /**
@@ -146,9 +146,9 @@ function createInvaderVisual(ref){
 	// }
  
 	if(ref.shootingDirection === 'left') {
-		ref.vGroup.rotate(-90);
-	}else{
 		ref.vGroup.rotate(90);
+	}else{
+		ref.vGroup.rotate(-90);
 	}
 	ref.vSprite.start();
 
@@ -176,7 +176,7 @@ function invaderMoveAI() {
 	invaderLastMoveTime = currentTime;
 
     var maxY = 0;
-    var minY = 9999999;
+    var minY = cCanvasHeight;
     for (var i = 0; i < allInvaders.length; i++) {
         var alien = allInvaders[i];
         if (alien.isAlive === false) {
@@ -186,7 +186,8 @@ function invaderMoveAI() {
         maxY = Math.max(maxY, alien.y);
         minY = Math.min(minY, alien.y);
     }
-    if (maxY > cCanvasHeight - cInvaderHeight || minY < cInvaderHeight ) {
+    //console.log("Min Y: " + minY + ", Max Y: " + maxY);
+    if (maxY > cCanvasHeight - cInvaderHeight || minY < cInvaderHeight * 1.5 ) {
         for (var i = 0; i < allInvaders.length; i++) {
             if (alien.isAlive === false) {
                 continue;
@@ -215,11 +216,32 @@ function suicideInvaderAI() {
  *  AI for controlling how the invaders will shoot.
  */
 function shootingAI() {
-    if (Math.random() < 0.5) {
-        var shootingAlien = aliens[Math.round(Math.random() * (aliens.length - 1))];
-        // shootingAlien has bullets
-        if (shootingAlien) {
-            // Spawn bullet
+    var d = new Date();
+    var currentTime = d.getTime();
+    
+    if(invaderLastShotTime == null) {
+		invaderLastShotTime = d.getTime();
+		return;
+	}
+    
+    if (currentTime - invaderLastShotTime > 500) {
+        invaderLastShotTime = currentTime;
+        if (Math.random() < 0.5) {
+            var shootingAlien = allInvaders[Math.round(Math.random() * (allInvaders.length - 1))];
+            // shootingAlien has bullets
+            if (shootingAlien.isAlive) {
+                for (var i = 0; i < shootingAlien.allBullets.length; i++) {
+                    if (shootingAlien.allBullets[i].isAlive) {
+                    
+                    }
+                    else if (shootingAlien.shootingDirection == "right") {
+                        shootingAlien.allBullets[i].isAlive = true;
+                        shootingAlien.allBullets[i].spawnAt(shootingAlien.x + shootingAlien.width/2 + 1 + cBulletWidth, shootingAlien.y);
+                        console.log("Alien shot right: " + shootingAlien.shootingDirection +  ", Bullet: " + shootingAlien.allBullets[i].moveDirection);
+                        console.log("A X: " + shootingAlien.x + ", B X: " + shootingAlien.allBullets[i].x);
+                    }
+                }
+            }
         }
     }
 }

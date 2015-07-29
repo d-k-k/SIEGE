@@ -56,15 +56,15 @@ function createPlayer(shootingDirection) {
 				for (var i = 0; i < this.allBullets.length; i++) {
 					if(this.allBullets[i].isAlive) {
 						//will do nothing if the found bullet isAlive
-						} else if (this.shootingDirection == "right") {//spawns bullet for left player
-							if((currentTime - previousTimeA) > 500) {
-								this.allBullets[i].isAlive = true;
-								this.allBullets[i].spawnAt(this.x + this.width/2 + 1 + cBulletWidth, this.y);
-								//this.counterShoot++;
-								previousTimeA = currentTime;
-								console.log('confirm right shot');
-							}
-						} else if (this.shootingDirection == "left") {//spawns bullet for right player
+					} else if (this.shootingDirection == "right") {//spawns bullet for left player
+						if((currentTime - previousTimeA) > 500) {
+							this.allBullets[i].isAlive = true;
+							this.allBullets[i].spawnAt(this.x + this.width/2 + 1 + cBulletWidth, this.y);
+							//this.counterShoot++;
+							previousTimeA = currentTime;
+							console.log('confirm right shot');
+						}
+					} else if (this.shootingDirection == "left") {//spawns bullet for right player
 						if((currentTime - previousTimeB) > 500) {
 							this.allBullets[i].isAlive = true;
 							this.allBullets[i].spawnAt(this.x - this.width/2 - 1 - cBulletWidth, this.y);
@@ -72,11 +72,11 @@ function createPlayer(shootingDirection) {
 							previousTimeB = currentTime;
 								console.log('confirm left shot');
 						}
-					};
-				};
-			};
+					}
+				}
+			}
 		}
-	}
+	};
 	/**
 	controls movement for the player
 	*/
