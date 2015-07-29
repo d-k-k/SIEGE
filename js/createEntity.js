@@ -49,10 +49,10 @@ function createEntity() {
 	*/
 	ent.damage = function (amountOfDamageBeingTaken) {
 		var currentHp = this.hp;//gets current hp
-		currentHP = currentHp - amountOfDamageBeingTaken;//calculates damage
+		currentHp = currentHp - amountOfDamageBeingTaken;//calculates damage
 		if (currentHp == 0 || currentHp < 0) {//hp check
 			this.isAlive = false;//sets isAlive to false
-			ent.Death();//call to the Death function 
+			ent.death();//call to the Death function 
 		}
 	};
 	
