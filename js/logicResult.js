@@ -20,8 +20,9 @@ function logicResult() {
 } //end logicResult
 
 /* Preps the game */
-function prepandSwitchToMenu() {
+function prepandSwitchToResult() {
     
-    placeScreenVisuals( allMenuVisuals );
+    placeScreenVisuals( allResultVisuals );
+    gameState = gsResult;
     
 } //end prepandSwitchToResult
