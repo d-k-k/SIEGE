@@ -67,9 +67,9 @@ function inputGameKeyboardBackup() {
 	else { allPlayers[1].moveDirection = 'none';}
 
 	//D
-	if(keyboardKeys[68] === 'down') { allPlayers[0].shoot(); }
+	if(keyboardKeys[68] === 'down') { allPlayers[0].shoot(); console.log('shoot from left player'); }
 	//J
-	if(keyboardKeys[74] === 'down') { allPlayers[1].shoot(); }
+	if(keyboardKeys[74] === 'down') { allPlayers[1].shoot(); console.log('shoot from right player'); }
 	
 	
 	

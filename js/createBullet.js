@@ -38,7 +38,7 @@ function createBullet(shootingDirection, Owner) {
     controls movement for the player
     */
     ent.moveUpdate = function () {
-        if (this.isAlive) {
+        if (this.isAlive)  {
             switch (this.moveDirection) {
                 case 'left':
                     this.x -= this.speed;
@@ -62,23 +62,28 @@ function createBullet(shootingDirection, Owner) {
 
         this.moveVisualsToCoordinates();
 
+        console.log('spam move bullet');
+
     } //end moveUpdate
     
     /**
     this updates isAlive variable to false. Stops movement and sets speed to 0. 
     Sprite removal needs to be added.
     */
-    ent.Death = function () {
+    ent.death = function () {
         this.isAlive = false;//set isAlive to false
-        this.speed = 0;//set speed to 0
+        //this.speed = 0;//set speed to 0
         this.direction = "none";//set direction to none
         //remove sprite code here
+        this.x = -100;
+        this.y = -100;
+        this.moveVisualsToCoordinates();
     };
 
     /**
     calls damage function of whatever entity is hit
     */
-    ent.Deal = function (entityHit) {
+    ent.deal = function (entityHit) {
         entityHit.Damage(damageValue);//calls damage function if whatever it hits
     }
     

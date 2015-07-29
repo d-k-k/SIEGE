@@ -40,6 +40,7 @@ function createPlayer(shootingDirection) {
 	ent.allBullets = [];
 	for(var i = 0; i < 3; i++) {
 		ent.allBullets.push( createBullet(shootingDirection, ent) );
+		ent.allBullets[ ent.allBullets.length - 1 ].type = 'playerBullet';
 	}
 
 	/**
@@ -53,20 +54,22 @@ function createPlayer(shootingDirection) {
 			//find an avaiable bullet, one where isAlive is false
 			for (var i = 0; i < this.allBullets.length; i++) {
 				if(this.allBullets[i].isAlive) {
-				//will do nothing if the found bullet isAlive
-				} else if (this.shootingDirection == "right") {//spawns bullet for left player
-					if((currentTime - previousTimeA) > 500) {
-						this.allBullets[i].isAlive = true;
-						this.allBullets[i].spawnAt(this.x + this.width/2 + 1, this.y);
-						//this.counterShoot++;
-						previousTimeA = currentTime;
-					}
-				} else if (this.shootingDirection == "left") {//spawns bullet for right player
+					//will do nothing if the found bullet isAlive
+					} else if (this.shootingDirection == "right") {//spawns bullet for left player
+						if((currentTime - previousTimeA) > 500) {
+							this.allBullets[i].isAlive = true;
+							this.allBullets[i].spawnAt(this.x + this.width/2 + 1 + cBulletWidth, this.y);
+							//this.counterShoot++;
+							previousTimeA = currentTime;
+							console.log('confirm right shot');
+						}
+					} else if (this.shootingDirection == "left") {//spawns bullet for right player
 					if((currentTime - previousTimeB) > 500) {
 						this.allBullets[i].isAlive = true;
-						this.allBullets[i].spawnAt(this.x - this.width/2 - 1, this.y);
+						this.allBullets[i].spawnAt(this.x - this.width/2 - 1 - cBulletWidth, this.y);
 						//this.counterShoot++;
 						previousTimeB = currentTime;
+							console.log('confirm left shot');
 					}
 				};
 			};
@@ -93,14 +96,14 @@ function createPlayer(shootingDirection) {
 		if(this.y < 0) { this.y = 0; }
 		else if(this.y > cCanvasHeight) { this.y = cCanvasHeight; }
 
-		for(var i = 0; i < this.allBullets.length; i++) {
-			this.allBullets[i].moveUpdate();
-			//console.log(this.allBullets[i].y)
-		}
+		// for(var i = 0; i < this.allBullets.length; i++) {
+		// 	this.allBullets[i].moveUpdate();
+		// 	//console.log(this.allBullets[i].y)
+		// }
 		//need to update visuals.
 		this.moveVisualsToCoordinates();
 
-		if(debugPlayerCreate) { console.log( 'player update location: ' + this.x + ',' + this.y + '. and sprite: ' + this.vGroup.x() + ',' + this.vGroup.y()  ); }
+		//if(debugPlayerCreate) { console.log( 'player update location: ' + this.x + ',' + this.y + '. and sprite: ' + this.vGroup.x() + ',' + this.vGroup.y()  ); }
 
 	}; //end moveUpdate
 
@@ -108,7 +111,7 @@ function createPlayer(shootingDirection) {
 	this updates isAlive variable to false. Stops movement and sets speed to 0. 
 	Sprite removal needs to be added.
 	*/
-	ent.Death = function () {
+	ent.death = function () {
 		this.isAlive = false;//set isAlive to false
 		//ent.speed = 0;//set speed to 0 //why is speed getting killed?
 		this.direction = "none";//set direction to none

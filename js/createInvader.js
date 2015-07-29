@@ -35,6 +35,10 @@ function createInvader(invadeType) {
 	ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)]; //?
 	ent.maxShootsBullets = 3;//max number of bullets an invader may fire at once
 
+	for(var i =0; i < ent.allBullets.length; i++) {
+		ent.allBullets[i].type = 'invaderBullet';
+	}
+
 	
 	ent.moveUpdate = function () {//calls the invaderMoveAI or suicideInvaderAI to handle movement
 		if(this.invaderType == 1) {

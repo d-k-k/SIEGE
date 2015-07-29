@@ -46,10 +46,10 @@ function overlap(object1, object2)
     var hb2 = object2.getHitBox();
     
     /* Checks the rectangle sides for overlap */
-    if(hb1.x - hb1.width/2 - hb1.height/2 < hb2.x + hb2.width/2 + hb2.height/2 &&  
-       hb1.x + hb1.width/2 + hb1.height/2 > hb2.x - hb2.width/2 - hb2.height/2 &&
-       hb1.y - hb1.width/2 - hb1.height/2 < ((hb2.y - hb2.width/2) + hb2.height/2) && 
-       ((hb1.y - hb1.width/2) + hb1.height/2) > hb2.y - hb2.width/2 - hb2.height/2) {
+    if(hb1.x - hb1.width/2 < hb2.x + hb2.width/2 &&  
+       hb1.x + hb1.width/2 > hb2.x - hb2.width/2 &&
+       hb1.y - hb1.height/2 < hb2.y + hb2.height/2 && 
+       hb1.y + hb1.height/2 > hb2.y - hb2.height/2) {
            return true;
        }
        else {
