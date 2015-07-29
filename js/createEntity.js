@@ -88,3 +88,54 @@ function createEntity() {
 	return ent; //DONT FORGET THIS
 
 } //end createEntity
+
+
+//This function should receive a Sprite as parameter
+function explodeEntity(ref){
+	var explosion_image = new Image();
+	explosion_image.src = '../assets/explosion_2.png';
+
+	var anim = {
+		explosion: [
+			0, 0, 76, 76,
+			76, 0, 76, 76,
+			152, 0, 76, 76,
+			228, 0, 76, 76,
+			304, 0, 76, 76,
+			380, 0, 76, 76,
+			456, 0, 76, 76,
+			532, 0, 76, 76,
+			608, 0, 76, 76,
+			684, 0, 76, 76,
+			760, 0, 76, 76,
+			836, 0, 76, 76,
+			912, 0, 76, 76,
+			988, 0, 76, 76
+
+		]
+	};
+
+	ref.image(explosion_image);
+	ref.animation('explosion');
+	ref.animations(anim);
+
+	ref.start();
+
+	setTimeout(function(){
+		console.log('destroy');
+
+		var empty_image = new Image();
+		empty_image.src = '../assets/empty.png';
+
+		var empty_anim = {
+			empty: [
+				0, 0, 64, 64
+			]
+		};
+
+		ref.image(empty_image);
+		ref.animation('empty');
+		ref.animations(empty_anim);
+
+	}, 7000/ref.frameRate());
+}
