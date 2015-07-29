@@ -50,7 +50,7 @@ function createEntity() {
 	ent.damage = function (amountOfDamageBeingTaken) {
 		var currentHp = this.hp;//gets current hp
 		currentHp = currentHp - amountOfDamageBeingTaken;//calculates damage
-		console.log('DAMAGE confirm hp:' + currentHp + ' ent hp:' + this.hp + "damage amount: " +amountOfDamageBeingTaken);
+		if(debug) { console.log('DAMAGE confirm hp:' + currentHp + ' ent hp:' + this.hp + "damage amount: " +amountOfDamageBeingTaken); }
 		if (currentHp <= 0) {//hp check
 			this.isAlive = false;//sets isAlive to false
 			this.death();//call to the Death function 

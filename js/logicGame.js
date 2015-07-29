@@ -34,7 +34,7 @@ function logicGame() {
     /* Checks for endgame condition, changes to results if true */
     if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
         prepandSwitchToResult();
-    }
+    } 
     
     onscreenVisuals();
 } //end logicGame
@@ -65,8 +65,7 @@ function onscreenVisuals() {
 
 /* Determines type and creates appropriate effect */
 function collisionEffects(object1, object2) {
-
-    
+	
     /* Checks if player is hit by any bullet or invader */
     if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
         object1.damage(1);
@@ -76,6 +75,9 @@ function collisionEffects(object1, object2) {
     }
     else if((object1.type == "invaderBullet" || object1.type == "invader" || object1.type == "playerBullet") && object2.type == "player") {
         object2.damage(1);
+		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
+            object1.death();
+        }
     }
     
     /* Checks player bullets with invaders */
