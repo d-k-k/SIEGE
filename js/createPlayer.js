@@ -21,7 +21,7 @@ function createPlayer(shootingDirection) {
 	ent.y = -100;//the defualt y ordinance of entity
 	ent.width = cPlayerWidth;//How wide the entity is
 	ent.height = cPlayerHeight;//How tall the entity is 
-	ent.speed = 5;//movement speed
+	ent.speed = 20;//movement speed
 	ent.hp = 1;//For now everything will have 1 hp
 	ent.type = "player";//this names what sort of entity, such as player or bullet
 	ent.shootingDirection = shootingDirection;

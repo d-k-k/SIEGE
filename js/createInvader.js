@@ -14,7 +14,7 @@ creates an invader.
 
 invadeType - this determines what sort of invader is created, i.e. suicide
 */
-function createInvader(invadeType) {
+function createInvader(invadeType, shootingDirection) {
 	var ent = createEntity();//this is the invader being created
 
 	ent.x = -100;//the default x ordinance of entity
@@ -32,21 +32,26 @@ function createInvader(invadeType) {
 	ent.intervalShoot = 500;//minimum time between shots in ms
 	ent.counterShoot = 0;//amount of shots active
     //array containing this invader's bullets
-	ent.allBullets = [createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type), createBullet(shootingDirection, ent.type)]; //?
+
+    ent.shootingDirection = shootingDirection;
+	ent.allBullets = [createBullet(shootingDirection, ent), createBullet(shootingDirection, ent), createBullet(shootingDirection, ent)]; //?
 	ent.maxShootsBullets = 3;//max number of bullets an invader may fire at once
 
 	for(var i =0; i < ent.allBullets.length; i++) {
 		ent.allBullets[i].type = 'invaderBullet';
 	}
 
+	createInvaderVisual(ent);
+
 	
 	ent.moveUpdate = function () {//calls the invaderMoveAI or suicideInvaderAI to handle movement
 		if(this.invaderType == 1) {
-			invaderMoveAI.call(ent);
+			//invaderMoveAI.call(ent);
 		}
 		else if (this.invaderType == 2) {
-			suicideInvaderAI.call(ent);
+			//suicideInvaderAI.call(ent);
 		}
+		this.moveVisualsToCoordinates();
 	};
 	
 	ent.shoot = function () {//calls the shootingAI function to handle shots 
@@ -59,13 +64,16 @@ function createInvader(invadeType) {
     */
 	ent.death = function () {
 		this.isAlive = false;//set isAlive to false
-		this.speed = 0;//set speed to 0
 		this.direction = "none";//set direction to none
 		if(this.invaderType == 1) {//if the invader that was killed was a normal invader
 			if(Math.random() < .15) {//and if it hits the 15% chance of spawning a suicide invader
 				//spawn a suicide invader at its location
 			}
 		}
+
+		this.x = -100;
+		this.y = -100;
+		this.moveVisualsToCoordinates();
 		//remove sprite code here
 	};
 	
@@ -79,7 +87,7 @@ function createInvader(invadeType) {
     ent.spawnAt = function (centerXvalue, centerYvalue) {
         this.hp = 1;
         this.isAlive = true;
-        this.x = centerYvalue;
+        this.x = centerXvalue;
         this.y = centerYvalue;
     };//takes parameters of where you want to spawn entity x
 	
@@ -99,49 +107,83 @@ function createInvader(invadeType) {
 function createInvaderVisual(ref){
 	ref.vGroup = new Konva.Group();
 
+	// ref.vSprite = new Konva.Sprite({
+	// 	x: -ref.width/2,
+	// 	y: -ref.height/2,
+	// 	frameRate: 7,
+	// 	frameIndex: 0
+	// });
+
+	// ref.vGroup.add(ref.vSprite);
+
+	// if(ref.invaderType === 1){
+	// 	var animations = {
+	// 		idle: [
+	// 			0, 0, 64, 64,
+	// 			64, 0, 64, 64
+	// 		]
+	// 	};
+
+	// 	ref.vSprite.image(allSpriteObjects['enemy1']);
+	// 	ref.vSprite.animation = 'idle';
+	// 	ref.vSprite.animations = animations;
+	// }
+
+	// ref.vSprite.start();
+
+
+
 	ref.vSprite = new Konva.Sprite({
 		x: -ref.width/2,
 		y: -ref.height/2,
-		frameRate: 7,
+		width: ref.width,
+		height: ref.height,
+		image: allSpriteObjects['enemy1'],
+		animation: 'idle',
+		animations: {
+			idle: [
+				0,0,ref.width,ref.height
+			]
+		},
+		frameRate: 1,
 		frameIndex: 0
 	});
 
 	ref.vGroup.add(ref.vSprite);
 
-	/*
-	It needs to rotate acording to which player it will attack
-
-	ref.vGroup.rotate(90 or -90);
-	
-	*/
-
-
-	if(ref.invaderType === 1){
-		var animations = {
-			idle: [
-				0, 0, 64, 64,
-				64, 0, 64, 64
-			]
-		};
-
-		ref.vSprite.image(allSpriteObjects['enemy1']);
-		ref.vSprite.animation = 'idle';
-		ref.vSprite.animations = animations;
+	if(ref.shootingDirection === 'left') {
+		ref.vGroup.rotate(-90);
+	}else{
+		ref.vGroup.rotate(90);
 	}
-
 	ref.vSprite.start();
-}
+
+
+
+} //end createInvaderVisual
 
 
 /**
  *  AI for moving invaders.
  */
 function invaderMoveAI() {
+
+	var d = new Date();
+
+	if(invaderLastMoveTime == null) {
+		invaderLastMoveTime = d.getTime();
+		return;
+	}
+	var currentTime = d.getTime();
+
+	if( !(currentTime - invaderLastMoveTime >= cInvaderMoveDelayTime)) {
+		return;
+	}
+
     var maxY = 0;
     var minY = 0;
-    var alienHeight = alien[0].height;
-    for (var i = 0; i < aliens.length; i++) {
-        var alien = aliens[i];
+    for (var i = 0; i < allInvaders.length; i++) {
+        var alien = allInvaders[i];
         if (alien.isAlive === false) {
             continue;
         }
@@ -149,18 +191,18 @@ function invaderMoveAI() {
         maxY = Math.max(maxY, alien.y);
         minY = Math.min(minY, alien.y);
     }
-    if (maxY > (game.height - 10 - alienHeight/2) || minY < (10 + alienHeight/2) ) {
-        for (var i = 0; i < aliens.length; i++) {
+    if (maxY > (cCanvasHeight - 10 - cInvaderHeight/2) || minY < (10 + cInvaderHeight/2) ) {
+        for (var i = 0; i < allInvaders.length; i++) {
             if (alien.isAlive === false) {
                 continue;
             }
-            aliens[i].moveDirection = aliens[i].moveDirection * -1;
-            aliens[i].y += aliens[i].height * (aliens[i].moveDirection);
-            if (aliens[i].x > game.width/2) {
-                aliens[i].x += aliens[i].width;
+            allInvaders[i].moveDirection = allInvaders[i].moveDirection * -1;
+            allInvaders[i].y += allInvaders[i].height * (allInvaders[i].moveDirection);
+            if (allInvaders[i].x > cCanvasWidth/2) {
+                allInvaders[i].x += allInvaders[i].width;
             }
-            if (aliens[i].x < game.width/2) {
-                aliens[i].x -= aliens[i].width;
+            if (allInvaders[i].x < cCanvasWidth/2) {
+                allInvaders[i].x -= allInvaders[i].width;
             }
         }
     }

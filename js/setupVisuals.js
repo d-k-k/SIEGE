@@ -104,6 +104,7 @@ Creates all visuals to be used in the game gameState.
 */
 function setupGameVisuals() {
 
+
 	allGameVisuals = {};
 	allGameVisuals.backLayer = {};
 	allGameVisuals.midLayer = {};
@@ -136,25 +137,20 @@ function setupGameVisuals() {
 		}
 	}
 
-	// //create invaders
-	// for(var i = 0; i < leftInvaders; i++) {
-	// 	allInvaders.push( createInvader(1) );
-	// 	agv[ 'invGroupL' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
+	//create invader
+	var totalInvadersNeededToBeCreated = cInvColSize * cInvRowSize * 2;
+	for ( var i = 0; i < totalInvadersNeededToBeCreated ; i++) {
+		if(i < totalInvadersNeededToBeCreated/2 ) {
+			allInvaders.push( createInvader(1, 'left') );
+		} else { 
+			allInvaders.push( createInvader(1, 'right') );
+		}
+		agv[ 'invGroup' + i] = allInvaders[ allInvaders.length - 1 ].vGroup;
 
-	// 	//need to get bullets visuals
-	// 	for(var b = 0; b < allInvaders[ allInvaders.length -1 ].allBullets.length; b++) {
-	// 		agv['invbLGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[b].vGroup;
-	// 	}
-	// }
-	// for(var i = 0; i < rightInvaders; i++) {
-	// 	allInvaders.push( createInvader(1) );
-	// 	agv[ 'invGroupR' + i ] = allInvaders[ allInvaders.length -1 ].vGroup;
-
-	// 	//need to get bullets visuals
-	// 	for(var b = 0; b < allInvaders[ allInvaders.length -1 ].allBullets.length; b++) {
-	// 		agv['invbRGroup' + i + b] = allInvaders[ allInvaders.length -1 ].allBullets[b].vGroup;
-	// 	}
-	// }
+		for(var b = 0; b < allInvaders[ allInvaders.length - 1 ].allBullets.length; b++ ) {
+			agv[ 'invGroupBullet' + i + 'bullid' + b ] = allInvaders[ allInvaders.length -1 ].allBullets[b].vGroup;
+		}
+	}
 
 
 

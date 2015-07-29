@@ -82,10 +82,12 @@ function collisionEffects(object1, object2) {
     else if(object1.type == "invader" && object2.type == "playerBullet") {
         object1.damage(1);
         object2.death();
+        console.log(' invader hit by bullet');
     }
     else if(object1.type == "playerBullet" && object2.type == "invader") {
         object2.damage(1);
         object1.death();
+        console.log(' invader hit by bullet');
     }
     
     /* Checks for boss */
@@ -115,6 +117,7 @@ function prepAndSwitchToGame() {
     }
     
     prepGamePlayerPosition();
+    prepGameInvaderPosition();
 
     placeScreenVisuals( allGameVisuals );
 
@@ -138,3 +141,36 @@ function prepGamePlayerPosition() {
     if(debug) {console.dir(allPlayers);}
 
 } //end prepGamePlayerPosition
+
+function prepGameInvaderPosition() {
+    var invCounter = 0;
+    var xcalc;
+    var ycalc;
+
+
+    for (var j = 0; j < cInvColSize; j++) {
+        for (var i = 0; i < cInvRowSize; i++) {
+            xcalc = cInvRightSpawnStartX + (cInvSpawnWidthGap + cInvaderWidth) * j ,
+            ycalc = cInvRightSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * i,
+            allInvaders[invCounter].spawnAt(xcalc, ycalc);
+            invCounter++;
+        }
+    }
+
+    for (var j = 0; j < cInvColSize; j++) {
+        for (var i = 0; i < cInvRowSize; i++) {
+            xcalc = cInvLeftSpawnStartX - (cInvSpawnWidthGap + cInvaderWidth) * j ,
+            ycalc = cInvLeftSpawnStartY + (cInvSpawnHeightGap + cInvaderHeight) * i,
+            allInvaders[invCounter].spawnAt(xcalc, ycalc);
+            invCounter++;
+        }
+    }
+
+} //end prepGameInvaderPosition
+
+
+
+
+
+
+

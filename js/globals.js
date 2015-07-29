@@ -40,8 +40,9 @@ var debugPlayerCreate = true;
 //Note: constants prefixed with lowercase 'c'. Why? Cuz autocomplete.
 
 var cMainUpdaterInterval = 10; //should be in ms
-var cCanvasWidth = 1000;  //only for testing on low res laptops.
-var cCanvasHeight = 400;
+//final res 1535 x 860
+var cCanvasWidth = 1538;  //only for testing on low res laptops.
+var cCanvasHeight = 860;
 
 var cPlayerWidth = 64;
 var cPlayerHeight = 64;
@@ -59,12 +60,12 @@ var cP2StartingY = cCanvasHeight/2 - cPlayerHeight/2;
 //invader globals to control spawn
 var cInvSpawnHeightGap = cInvaderHeight/2; //basically shots get a half miss zone.
 var cInvSpawnWidthGap = cInvaderWidth/2; 
-var cInvRowSize = 5; //these numbers can and will be changed.
+var cInvRowSize = 9; //these numbers can and will be changed.
 var cInvColSize = 5;
 var cInvRightSpawnStartX = cCanvasWidth/2 + cInvaderWidth; //the right invader starts off 1 width away from the middle
 var cInvRightSpawnStartY = cInvaderHeight;
-var cInvLeftSpawnStartX = cInvRightSpawnStartX - (cInvaderHeight * 2) - ( cInvRowSize * (cInvaderHeight + cInvSpawnHeightGap));
-var cInvLeftSpawnStartY = cInvRightSpawnStartY; //start them in the same formation, but would be better if they crossed.
+var cInvLeftSpawnStartX = cCanvasWidth/2 - cInvaderWidth;
+var cInvLeftSpawnStartY = cInvaderHeight; //start them in the same formation, but would be better if they crossed.
 
 
 
@@ -113,7 +114,8 @@ var leaderBoard = [
                     } 
                   ];
 
-
+var cInvaderMoveDelayTime = 1000;
+var invaderLastMoveTime = null;
 
 
 //---------------------------------------------------------------------------------------------------------

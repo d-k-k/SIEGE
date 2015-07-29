@@ -24,7 +24,7 @@ function createBullet(shootingDirection, Owner) {
     ent.y = -100;//the defualt y ordinance of entity
     ent.width = cBulletWidth;//How wide the entity is
     ent.height = cBulletHeight;//How tall the entity is 
-    ent.speed = 5;//movement speed
+    ent.speed = 30;//movement speed
     ent.moveDirection = shootingDirection;//this determines which way the bullet moves
     ent.hp = 1;//For now everything will have 1 hp
     ent.type = "bullet";//this names what sort of entity, such as player or bullet
