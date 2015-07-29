@@ -155,7 +155,7 @@ function createPlayerVisual(ref) {
 		animation: 'idle',
 		animations: {
 			idle: [
-				0,0,64,64
+				0,0,32,32
 			]
 		},
 		frameRate: 1,

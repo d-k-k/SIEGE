@@ -63,9 +63,9 @@ var cInvSpawnWidthGap = cInvaderWidth/2;
 var cInvRowSize = 9; //these numbers can and will be changed.
 var cInvColSize = 5;
 var cInvRightSpawnStartX = cCanvasWidth/2 + cInvaderWidth; //the right invader starts off 1 width away from the middle
-var cInvRightSpawnStartY = cInvaderHeight;
+var cInvRightSpawnStartY = cInvaderHeight * 9 / 4;
 var cInvLeftSpawnStartX = cCanvasWidth/2 - cInvaderWidth;
-var cInvLeftSpawnStartY = cInvaderHeight; //start them in the same formation, but would be better if they crossed.
+var cInvLeftSpawnStartY = cInvRightSpawnStartY; //start them in the same formation, but would be better if they crossed.
 
 
 

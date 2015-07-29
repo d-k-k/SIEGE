@@ -1,6 +1,5 @@
 
 
-
 /*
 This should be the first function to activate.
 
@@ -18,6 +17,7 @@ function main() {
 
 	gameState = gsMenu;
 	setInterval(mainUpdater, cMainUpdaterInterval); //start the main update
+
 } //end main
 
 

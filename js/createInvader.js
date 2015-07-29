@@ -70,7 +70,7 @@ function createInvader(invadeType, shootingDirection) {
 				//spawn a suicide invader at its location
 			}
 		}
-
+		explodeEntity(this.vSprite);
 		//this.x = -100;
 		//this.y = -100;
 		this.moveVisualsToCoordinates();
@@ -107,42 +107,16 @@ function createInvader(invadeType, shootingDirection) {
 function createInvaderVisual(ref){
 	ref.vGroup = new Konva.Group();
 
-	// ref.vSprite = new Konva.Sprite({
-	// 	x: -ref.width/2,
-	// 	y: -ref.height/2,
-	// 	frameRate: 7,
-	// 	frameIndex: 0
-	// });
-
-	// ref.vGroup.add(ref.vSprite);
-
-	// if(ref.invaderType === 1){
-	// 	var animations = {
-	// 		idle: [
-	// 			0, 0, 64, 64,
-	// 			64, 0, 64, 64
-	// 		]
-	// 	};
-
-	// 	ref.vSprite.image(allSpriteObjects['enemy1']);
-	// 	ref.vSprite.animation = 'idle';
-	// 	ref.vSprite.animations = animations;
-	// }
-
-	// ref.vSprite.start();
-
-
-
 	ref.vSprite = new Konva.Sprite({
-		x: -ref.width/2,
-		y: -ref.height/2,
-		width: ref.width,
-		height: ref.height,
+		x: -cInvaderWidth/2,
+		y: -cInvaderHeight/2,
+		width: cInvaderWidth,
+		height: cInvaderHeight,
 		image: allSpriteObjects['enemy1'],
 		animation: 'idle',
 		animations: {
 			idle: [
-				0,0,ref.width,ref.height
+				0,0,32,32
 			]
 		},
 		frameRate: 1,
@@ -151,6 +125,26 @@ function createInvaderVisual(ref){
 
 	ref.vGroup.add(ref.vSprite);
 
+	// if(debug) {
+	// 	ref.vOutline = new Konva.Rect({
+	// 		x: -ref.width/2,
+	// 		y: -ref.height/2,
+	// 		width: ref.width,
+	// 		height: ref.height,
+	// 		stroke: 'red',
+	// 		strokeWidth: 1
+	// 	});
+	// 	ref.vGroup.add(ref.vOutline);
+	// 	ref.vDot = new Konva.Rect({
+	// 		x: 0,
+	// 		y: 0,
+	// 		width: 2,
+	// 		height: 2,
+	// 		fill: 'blue'
+	// 	});
+	// 	ref.vGroup.add(ref.vDot);
+	// }
+ 
 	if(ref.shootingDirection === 'left') {
 		ref.vGroup.rotate(-90);
 	}else{
