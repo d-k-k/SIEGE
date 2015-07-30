@@ -116,10 +116,11 @@ function createInvaderVisual(ref){
 		animation: 'idle',
 		animations: {
 			idle: [
-				0,0,32,32
+				0,0,32,32,
+				32,0,32,32
 			]
 		},
-		frameRate: 1,
+		frameRate: 8,
 		frameIndex: 0
 	});
 
