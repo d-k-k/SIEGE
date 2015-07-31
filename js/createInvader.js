@@ -208,8 +208,7 @@ function invaderMoveAI() {
  *  AI for suicide invaders.
  */
 function suicideInvaderAI(alien) {
-    alien.speed = 10;
-    alien.y += alien.width
+
 }
 
 
