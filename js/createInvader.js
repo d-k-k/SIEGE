@@ -160,6 +160,11 @@ function createInvaderVisual(ref){
 
 /**
  *  AI for moving invaders.
+ *  Determines how the invaders will move base on position.
+ *  All invaders will move every single second.
+ *
+ *  Parameters: none
+ *  Return:     none
  */
 function invaderMoveAI() {
 
@@ -188,6 +193,8 @@ function invaderMoveAI() {
         minY = Math.min(minY, alien.y);
     }
     //console.log("Min Y: " + minY + ", Max Y: " + maxY);
+    
+    // Determines if any of the invaders are going beyond the 30px margin
     if (maxY > cCanvasHeight - cInvaderHeight || minY < cInvaderHeight * 1.5 ) {
         for (var i = 0; i < allInvaders.length; i++) {
             if (alien.isAlive === false) {
@@ -208,13 +215,17 @@ function invaderMoveAI() {
 /**
  *  AI for suicide invaders.
  */
-function suicideInvaderAI() {
+function suicideInvaderAI(alien) {
 
 }
 
 
 /**
  *  AI for controlling how the invaders will shoot.
+ *  Every 500 millisecond, there is a chance a random invader will be chosen to shoot.
+ *
+ *  Parameters: none
+ *  Return:    none
  */
 function shootingAI() {
     var d = new Date();
