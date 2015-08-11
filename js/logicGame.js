@@ -74,12 +74,14 @@ function collisionEffects(object1, object2) {
     /* Checks if player is hit by any bullet or invader */
     if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
         object1.damage(1);
+        object1.score++;
         if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
             object2.death();
         }
     }
     else if((object1.type == "invaderBullet" || object1.type == "invader" || object1.type == "playerBullet") && object2.type == "player") {
         object2.damage(1);
+        object2.score++;
 		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
             object1.death();
         }
@@ -116,10 +118,16 @@ Switches visuals.
 */
 function prepAndSwitchToGame() {
     
-    /* Kills all bullets */
+    
     for(var i = 0; i < allEntities.length; i++) {
+        /* Kills all bullets */
         if(allEntities[i].type == "bullet") {
             allEntities[i].isAlive = false;
+        }
+        /* Resets player scores */
+        if(allEntities[i].type == "player") {
+            var player = allEntities[i];
+            player.score = 0;
         }
     }
     

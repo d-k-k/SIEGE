@@ -100,10 +100,10 @@ var allPlayers 	= [];
 var allInvaders = [];
 var allEntities = [];
 var leaderBoard = [ 
-	            { 
-	              name: 'aaa', 
+	                { 
+                      name: 'aaa', 
                       score: 3  
-		    }, 
+		            }, 
                     { 
                       name: 'aaa', 
                       score: 2
