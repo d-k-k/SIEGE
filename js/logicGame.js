@@ -38,6 +38,7 @@ function logicGame() {
     
     /* Checks for endgame condition, changes to results if true */
     if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
+		console.log(allPlayers[0].score, allPlayers[1].score);
         prepandSwitchToResult();
     } 
     
@@ -76,16 +77,20 @@ function collisionEffects(object1, object2) {
         /* Checks if player is hit by any bullet or invader */
         if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
             object1.damage(1);
-            object1.score++;
             if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
                 object2.death();
+				if(object2.type == "playerBullet") {
+					object2.Owner.score++;
+				}
             }
         }
         else if((object1.type == "invaderBullet" || object1.type == "invader" || object1.type == "playerBullet") && object2.type == "player") {
             object2.damage(1);
-            object2.score++;
     		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
                 object1.death();
+				if(object1.type == "playerBullet") {
+					object1.Owner.score++;
+				}
             }
         }
         
@@ -93,11 +98,13 @@ function collisionEffects(object1, object2) {
         else if(object1.type == "invader" && object2.type == "playerBullet") {
             object1.damage(1);
             object2.death();
+			object2.Owner.score++;
             console.log(' invader hit by bullet');
         }
         else if(object1.type == "playerBullet" && object2.type == "invader") {
             object2.damage(1);
             object1.death();
+			object1.Owner.score++;
             console.log(' invader hit by bullet');
         }
         
