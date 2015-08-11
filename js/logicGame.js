@@ -71,42 +71,45 @@ function onscreenVisuals() {
 /* Determines type and creates appropriate effect */
 function collisionEffects(object1, object2) {
 	
-    /* Checks if player is hit by any bullet or invader */
-    if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
-        object1.damage(1);
-        object1.score++;
-        if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
+    if(object1.isAlive && object2.isAlive){
+
+        /* Checks if player is hit by any bullet or invader */
+        if(object1.type == "player" && (object2.type == "invaderBullet" || object2.type == "invader" || object2.type == "playerBullet")) {
+            object1.damage(1);
+            object1.score++;
+            if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
+                object2.death();
+            }
+        }
+        else if((object1.type == "invaderBullet" || object1.type == "invader" || object1.type == "playerBullet") && object2.type == "player") {
+            object2.damage(1);
+            object2.score++;
+    		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
+                object1.death();
+            }
+        }
+        
+        /* Checks player bullets with invaders */
+        else if(object1.type == "invader" && object2.type == "playerBullet") {
+            object1.damage(1);
+            object2.death();
+            console.log(' invader hit by bullet');
+        }
+        else if(object1.type == "playerBullet" && object2.type == "invader") {
+            object2.damage(1);
+            object1.death();
+            console.log(' invader hit by bullet');
+        }
+        
+        /* Checks for boss */
+        else if(object1.type == "boss" && object2.type == "playerBullet") {
+            object1.damage(1);
             object2.death();
         }
-    }
-    else if((object1.type == "invaderBullet" || object1.type == "invader" || object1.type == "playerBullet") && object2.type == "player") {
-        object2.damage(1);
-        object2.score++;
-		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
+        else if(object1.type == "playerBullet" && object2.type == "boss") {
+            object2.damage(1);
             object1.death();
         }
-    }
-    
-    /* Checks player bullets with invaders */
-    else if(object1.type == "invader" && object2.type == "playerBullet") {
-        object1.damage(1);
-        object2.death();
-        console.log(' invader hit by bullet');
-    }
-    else if(object1.type == "playerBullet" && object2.type == "invader") {
-        object2.damage(1);
-        object1.death();
-        console.log(' invader hit by bullet');
-    }
-    
-    /* Checks for boss */
-    else if(object1.type == "boss" && object2.type == "playerBullet") {
-        object1.damage(1);
-        object2.death();
-    }
-    else if(object1.type == "playerBullet" && object2.type == "boss") {
-        object2.damage(1);
-        object1.death();
     }
 } //end collisionEffects
 
