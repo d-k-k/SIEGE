@@ -252,6 +252,12 @@ function shootingAI() {
                         console.log("Alien shot right: " + shootingAlien.shootingDirection +  ", Bullet: " + shootingAlien.allBullets[i].moveDirection);
                         console.log("A X: " + shootingAlien.x + ", B X: " + shootingAlien.allBullets[i].x);
                     }
+                    else if (shootingAlien.shootingDirection == "left") {
+                        shootingAlien.allBullets[i].isAlive = true;
+                        shootingAlien.allBullets[i].spawnAt(shootingAlien.x + shootingAlien.width/2 + 1 + cBulletWidth, shootingAlien.y);
+                        console.log("Alien shot left: " + shootingAlien.shootingDirection +  ", Bullet: " + shootingAlien.allBullets[i].moveDirection);
+                        console.log("A X: " + shootingAlien.x + ", B X: " + shootingAlien.allBullets[i].x);
+                    }
                 }
             }
         }
