@@ -1,0 +1,5 @@
+
+
+function inputResult() {
+
+} //end inputResult
