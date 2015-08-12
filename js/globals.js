@@ -46,8 +46,8 @@ var cCanvasHeight = 860;
 
 var cPlayerWidth = 32;
 var cPlayerHeight = 32;
-var cBulletWidth = 8;
-var cBulletHeight = 8;
+var cBulletWidth = 16;
+var cBulletHeight = 16;
 var cInvaderWidth = 32;
 var cInvaderHeight = 32;
 
