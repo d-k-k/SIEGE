@@ -37,8 +37,8 @@ function logicGame() {
     } //end outer for
     
     /* Checks for endgame condition, changes to results if true */
-    if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
-		console.log(allPlayers[0].score, allPlayers[1].score);
+    if(!allPlayers[0].isAlive || !allPlayers[1].isAlive || keyboardKeys[13] === 'down') {
+		console.log("P1 score: " + allPlayers[0].score + "\nP2 score: " + allPlayers[1].score);
         prepandSwitchToResult();
     } 
     
@@ -80,7 +80,7 @@ function collisionEffects(object1, object2) {
             if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
                 object2.death();
 				if(object2.type == "playerBullet") {
-					object2.Owner.score++;
+					object2.Owner.score+=5;
 				}
             }
         }
@@ -89,7 +89,7 @@ function collisionEffects(object1, object2) {
     		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
                 object1.death();
 				if(object1.type == "playerBullet") {
-					object1.Owner.score++;
+					object1.Owner.score+=5;
 				}
             }
         }
