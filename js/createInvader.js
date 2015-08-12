@@ -76,6 +76,7 @@ function createInvader(invadeType, shootingDirection) {
 		this.moveVisualsToCoordinates();
 		//remove sprite code here
 		var audio_explosion = new Audio("assets/explosion_4.wav");
+		audio_explosion.volume = 0.3;
 		audio_explosion.play();
 	};
 	

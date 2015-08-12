@@ -162,6 +162,8 @@ function prepAndSwitchToGame() {
 
     gameState = gsGame;
 
+    audio_ingame_song.play();
+
 } //end prepAndSwitchToGame
 
 //place players correctly.
