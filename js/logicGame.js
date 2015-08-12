@@ -48,7 +48,7 @@ function logicGame() {
             winner = "Player 2 Got PWN'd";
         }
         else {
-            winnder = "Player 1 Got PWN'd";
+            winner = "Player 1 Got PWN'd";
         }
         prepandSwitchToResult(winner);
     } 
