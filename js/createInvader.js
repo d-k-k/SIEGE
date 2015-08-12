@@ -89,6 +89,12 @@ function createInvader(invadeType, shootingDirection) {
         this.isAlive = true;
         this.x = centerXvalue;
         this.y = centerYvalue;
+        this.vSprite.image( this.vOrigImage );
+        this.vSprite.animation( this.vOrigAnim );
+        this.vSprite.animations( this.vOrigAnimations );
+        this.vSprite.frameRate( this.vOrigFrameRate );
+        this.vSprite.stop();
+        this.vSprite.start();
     };//takes parameters of where you want to spawn entity x
 	
     /**
@@ -123,6 +129,10 @@ function createInvaderVisual(ref){
 		frameRate: 8,
 		frameIndex: 0
 	});
+	ref.vOrigImage = ref.vSprite.image();
+	ref.vOrigAnim = ref.vSprite.animation();
+	ref.vOrigAnimations = ref.vSprite.animations();
+	ref.vOrigFrameRate = ref.vSprite.frameRate();
 
 	ref.vGroup.add(ref.vSprite);
 
