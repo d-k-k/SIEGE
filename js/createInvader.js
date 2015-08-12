@@ -239,10 +239,10 @@ function invaderMoveAI() {
  */
 function suicideInvaderAI(alien) {
     if (alien.shootingDirection === 'left') {
-        alien.x -= 10; 
+        alien.x -= 15; 
     }
     else if (alien.shootingDirection === 'right') {
-        alien.x += 10;
+        alien.x += 15;
     }
 }
 
