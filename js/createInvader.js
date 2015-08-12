@@ -49,7 +49,7 @@ function createInvader(invadeType, shootingDirection) {
 			invaderMoveAI();
 		}
 		else if (this.invaderType == 2) {
-			//suicideInvaderAI.call(ent);
+			suicideInvaderAI.call(this);
 		}
 		this.moveVisualsToCoordinates();
 	};
@@ -242,7 +242,12 @@ function invaderMoveAI() {
  *  AI for suicide invaders.
  */
 function suicideInvaderAI(alien) {
-
+    if (alien.shootingDirection === 'left') {
+        alien.x -= 10; 
+    }
+    else if (alien.shootingDirection === 'right') {
+        alien.x += 10;
+    }
 }
 
 
