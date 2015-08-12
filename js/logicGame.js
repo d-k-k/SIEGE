@@ -19,26 +19,26 @@ function logicGame() {
         }
     }
     
-    for (var i = 0; i < allEntities.length; i++) {    
+    for (var j = 0; j < allEntities.length; j++) {    
         /* Checks for overlap and triggers effects if true */
-        if (allEntities[i].type == "invader") {
-            allEntities[i].shoot();
+        if (allEntities[j].type == "invader") {
+            allEntities[j].shoot();
         }
-        for(var j = 0; j < allEntities.length; j++) {
-            if(allEntities[j].isAlive) {
-                if(allEntities[i] == allEntities[j]) {
+        for(var k = 0; k < allEntities.length; k++) {
+            if(allEntities[k].isAlive) {
+                if(allEntities[j] == allEntities[k]) {
                     continue; //continue loop if same entity
                 }
-                if(overlap(allEntities[i], allEntities[j])) {
-                    collisionEffects(allEntities[i], allEntities[j]);
+                if(overlap(allEntities[j], allEntities[k])) {
+                    collisionEffects(allEntities[j], allEntities[k]);
                 } 
             } //end inner for
         } 
     } //end outer for
     
     /* Checks for endgame condition, changes to results if true */
-    if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
-		console.log(allPlayers[0].score, allPlayers[1].score);
+    if(!allPlayers[0].isAlive || !allPlayers[1].isAlive || keyboardKeys[13] === 'down') {
+		console.log("P1 score: " + allPlayers[0].score + "\nP2 score: " + allPlayers[1].score);
         prepandSwitchToResult();
     } 
 
@@ -91,7 +91,7 @@ function collisionEffects(object1, object2) {
             if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
                 object2.death();
 				if(object2.type == "playerBullet") {
-					object2.Owner.score++;
+					object2.Owner.score+=5;
 				}
             }
         }
@@ -100,7 +100,7 @@ function collisionEffects(object1, object2) {
     		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
                 object1.death();
 				if(object1.type == "playerBullet") {
-					object1.Owner.score++;
+					object1.Owner.score+=5;
 				}
             }
         }
