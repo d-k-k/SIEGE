@@ -48,7 +48,19 @@ function logicGame() {
     //check if all invaders are dead
     var allDead = true;
     for(var i = 0; i < allInvaders.length; i++) {
-        if(allInvaders[i].vSprite.animation() !== 'empty' ) { allDead = false; }
+        if(allInvaders[i].vSprite.animation() !== 'empty' ) {
+            allDead = false;
+        }
+        if(allInvaders[i].vSprite.animation() === 'empty' && allInvaders[i].invaderType == 1 && allInvaders[i].justDied ) {
+
+            if (Math.random() < .99) {
+                allInvaders[i].spawnAt(allInvaders[i].x, allInvaders[i].y);
+                allInvaders[i].vSprite.image( allSpriteObjects['enemy2'] );
+                allInvaders[i].invaderType = 2;
+                allDead = false;
+            }
+            allInvaders[i].justDied = false;
+        }
     }
     if(allDead && is2ndWaveAvailable) {
         is2ndWaveAvailable = false;

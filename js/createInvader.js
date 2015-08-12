@@ -25,7 +25,8 @@ function createInvader(invadeType, shootingDirection) {
 	ent.moveDirection = 1;//up down left right
 	ent.hp = 1;//For now everything will have 1 hp
 	ent.type = "invader";//this names what sort of entity, such as player or bullet
-	isAlive = true;//invader is alive
+	ent.isAlive = true;//invader is alive
+	ent.justDied = false;
 	
 	ent.invaderType = invadeType;//1 being normal, or 2 being suicide
 	ent.collisionDamage = 1;//amount of damage dealt of collision
@@ -49,7 +50,7 @@ function createInvader(invadeType, shootingDirection) {
 			invaderMoveAI();
 		}
 		else if (this.invaderType == 2) {
-			suicideInvaderAI.call(this);
+			suicideInvaderAI(this);
 		}
 		this.moveVisualsToCoordinates();
 	};
@@ -64,12 +65,6 @@ function createInvader(invadeType, shootingDirection) {
     */
 	ent.death = function () {
 
-		if( true ) {
-			this.spawnAt(this.x, this.y);
-			this.vSprite.image( allSpriteObjects['enemy2'] );
-
-			return;
-		}
 
 		this.isAlive = false;//set isAlive to false
 		this.direction = "none";//set direction to none
@@ -98,6 +93,7 @@ function createInvader(invadeType, shootingDirection) {
     ent.spawnAt = function (centerXvalue, centerYvalue) {
         this.hp = 1;
         this.isAlive = true;
+        this.justDied = true;
         this.x = centerXvalue;
         this.y = centerYvalue;
         this.vSprite.image( this.vOrigImage );
@@ -208,7 +204,7 @@ function invaderMoveAI() {
     var needToGoDown = false;
     for (var i = 0; i < allInvaders.length; i++) {
         var alien = allInvaders[i];
-        if (alien.isAlive === false) {
+        if (alien.isAlive === false || alien.invaderType === 2) {
             continue;
         }
         alien.y += alien.height * alien.moveDirection;
@@ -223,7 +219,7 @@ function invaderMoveAI() {
     // Determines if any of the invaders are going beyond the 30px margin
     if ( needToGoDown ||  (maxY >= cCanvasHeight - cInvaderHeight) || (minY <= cInvaderHeight * 1.5) ) {
         for (var i = 0; i < allInvaders.length; i++) {
-            if (alien.isAlive === false) {
+            if (allInvaders[i].isAlive === false || allInvaders[i].invaderType === 2) {
                 continue;
             }
             allInvaders[i].moveDirection = allInvaders[i].moveDirection * -1;
