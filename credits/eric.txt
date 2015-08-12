@@ -1,3 +1,0 @@
-Name: Eric Wu
-Website: https://erichmwu.wordpress.com
-Repo: https://github.com/erichmwu
