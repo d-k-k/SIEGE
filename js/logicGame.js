@@ -19,18 +19,18 @@ function logicGame() {
         }
     }
     
-    for (var i = 0; i < allEntities.length; i++) {    
+    for (var j = 0; j < allEntities.length; j++) {    
         /* Checks for overlap and triggers effects if true */
-        if (allEntities[i].type == "invader") {
-            allEntities[i].shoot();
+        if (allEntities[j].type == "invader") {
+            allEntities[j].shoot();
         }
-        for(var j = 0; j < allEntities.length; j++) {
-            if(allEntities[j].isAlive) {
-                if(allEntities[i] == allEntities[j]) {
+        for(var k = 0; k < allEntities.length; k++) {
+            if(allEntities[k].isAlive) {
+                if(allEntities[j] == allEntities[k]) {
                     continue; //continue loop if same entity
                 }
-                if(overlap(allEntities[i], allEntities[j])) {
-                    collisionEffects(allEntities[i], allEntities[j]);
+                if(overlap(allEntities[j], allEntities[k])) {
+                    collisionEffects(allEntities[j], allEntities[k]);
                 } 
             } //end inner for
         } 
