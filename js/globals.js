@@ -96,14 +96,14 @@ var allSpriteObjects = null;
 
 //---------------------------------------------------------------------------------------------------------
 //data structures
-var allPlayers 	= [];
+var allPlayers  = [];
 var allInvaders = [];
 var allEntities = [];
 var leaderBoard = [ 
-	                { 
+                  { 
                       name: 'aaa', 
                       score: 3  
-		            }, 
+                    }, 
                     { 
                       name: 'aaa', 
                       score: 2
@@ -113,17 +113,42 @@ var leaderBoard = [
                       score: 1
                     } 
                   ];
+//Result screen variables
+var charPos1 = 65; //character position (cycling up/down through alphabet)
+var charPos2 = 65; //A-Z, 65-90
+var lockInCounter1 = 0; //checks for number of lock-ins for each player
+var lockInCounter2 = 0; //when 3 for both, switch to menu
+var p1name = "";
+var p2name = "";
+var waitingForInput1 = false; //is true if p1 has new high score and needs to enter name
+var waitingForInput2 = false; //same for p2
+var newScoreIndex1 = 0; //index of new score in leaderboard array
+var newScoreIndex2 = 0;
+var nextChar1 = false;
+var nextChar2 = false;
+
+//Keyboard variables 
+var p1WKeyUp = false;
+var p1SKeyUp = false;
+var p1DKeyUp = false;
+var p2IKeyUp = false;
+var p2KKeyUp = false;
+var p2JKeyUp = false;
 
 var cInvaderMoveDelayTime = 1000;
 var invaderLastMoveTime = null;
 var invaderLastShotTime = null;
 
+var resultScreenVars = {};
+resultScreenVars.lastTime = 0;
+resultScreenVars.blinkCounter = 0;
+resultScreenVars.blinkTime = 400;
+
+var is2ndWaveAvailable = true;
 
 //---------------------------------------------------------------------------------------------------------
 //misc
-var keyboardKeys	= {};
-
-
+var keyboardKeys  = {};
 
 
 

@@ -84,16 +84,75 @@ function setupMenuVisuals() {
 	allMenuVisuals.midLayer = {};
 	allMenuVisuals.frontLayer = {};
 
-	var amv = allMenuVisuals.backLayer;
+	var amv = allMenuVisuals.midLayer;
 
 	amv.title = new Konva.Text({
-		text: 'Space Invaders',
-		fontSize: 30,
+		text: 'SIEGE',
+		fontSize: cCanvasHeight * 0.15,
 		fontFamily: 'Arial',
-		fill: 'greem'
+		fill: 'green'
 	});
 	amv.title.x( cCanvasWidth/2 - amv.title.getTextWidth()/2 );
 	amv.title.y( cCanvasHeight * 0.1);
+
+
+	amv.howToStart = new Konva.Text({
+		text: '<Press ENTER or hold a button on both controllers to start>',
+		fontSize: cCanvasHeight * 0.03,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	amv.howToStart.x( cCanvasWidth/2 - amv.howToStart.getTextWidth()/2 );
+	amv.howToStart.y( cCanvasHeight * 0.3);
+
+
+	amv.highScore = new Konva.Text({
+		text: 'HIGH SCORES',
+		fontSize: cCanvasHeight * 0.06,
+		fontFamily: 'Courier',
+		fill: 'green'
+	});
+	amv.highScore.x( cCanvasWidth/2 - amv.highScore.getTextWidth()/2 );
+	amv.highScore.y( cCanvasHeight * 0.5);
+
+
+	amv.topScore1 = new Konva.Text({
+		text: 'asdf',
+		fontSize: cCanvasHeight * 0.04,
+		fontFamily: 'Courier',
+		fill: 'green'
+	});
+	amv.topScore1.x( amv.highScore.x() + 80 );
+	amv.topScore1.y( cCanvasHeight * 0.57 );
+	amv.topScore1.text( 'nobody know' );
+
+	amv.topScore2 = new Konva.Text({
+		text: 'asdf',
+		fontSize: cCanvasHeight * 0.04,
+		fontFamily: 'Courier',
+		fill: 'green'
+	});
+	amv.topScore2.x( amv.highScore.x() + 80 );
+	amv.topScore2.y( cCanvasHeight * 0.57 + amv.topScore1.getTextHeight() );
+	amv.topScore2.text( 'the trouble' );
+
+	amv.topScore3 = new Konva.Text({
+		text: 'asdf',
+		fontSize: cCanvasHeight * 0.04,
+		fontFamily: 'Courier',
+		fill: 'green'
+	});
+	amv.topScore3.x( amv.highScore.x() + 80 );
+	amv.topScore3.y( cCanvasHeight * 0.57 + amv.topScore1.getTextHeight() * 2 );
+	amv.topScore3.text( 'ive seen' );
+
+
+
+
+
+
+
+
 
 } //end setupMenuVisuals
 
@@ -154,6 +213,26 @@ function setupGameVisuals() {
 	}
 
 
+	avg = allGameVisuals.frontLayer;
+	avg.p1score = new Konva.Text({
+		text: 'Score: 0',
+		fontSize: cP1StartingX - 20,
+		fontFamily: 'Courier',
+		fill: 'green'
+	});
+	avg.p1score.x( cP1StartingX - 10);
+	avg.p1score.y( cCanvasHeight / 2 - avg.p1score.getTextWidth()/2 );
+	avg.p1score.rotate(90);
+
+	avg.p2score = new Konva.Text({
+		text: 'Score: 0',
+		fontSize: cP1StartingX - 20,
+		fontFamily: 'Courier',
+		fill: 'green'
+	});
+	avg.p2score.x( cCanvasWidth - avg.p2score.getTextHeight() - 10 );
+	avg.p2score.y( cCanvasHeight / 2 + avg.p1score.getTextWidth()/2 );
+	avg.p2score.rotate(-90);
 
 } //end setupGameVisuals
 
@@ -170,6 +249,101 @@ function setupResultVisuals() {
 	allResultVisuals.midLayer = {};
 	allResultVisuals.frontLayer = {};
 
+	var arv = allResultVisuals.midLayer;
+
+	arv.player1Title = new Konva.Text({
+		text: 'Player 1',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	arv.player1Title.x( cCanvasWidth/4 - arv.player1Title.getTextWidth()/2 );
+	arv.player1Title.y( cCanvasHeight * 0.1 );
+
+	arv.p1c1 =  new Konva.Text({
+		text: 'A',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	arv.p1c1.x( cCanvasWidth/4 - arv.p1c1.getTextWidth()/2 - arv.p1c1.getTextWidth() );
+	arv.p1c1.y( cCanvasHeight / 2 );
+
+	arv.p1c2 =  new Konva.Text({
+		text: 'A',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	arv.p1c2.x( cCanvasWidth/4 - arv.p1c2.getTextWidth()/2 );
+	arv.p1c2.y( cCanvasHeight / 2 );
+
+	arv.p1c3 =  new Konva.Text({
+		text: 'A',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	arv.p1c3.x( cCanvasWidth/4 - arv.p1c3.getTextWidth()/2 + arv.p1c3.getTextWidth() );
+	arv.p1c3.y( cCanvasHeight / 2 );
+
+
+
+	arv.player2Title = new Konva.Text({
+		text: 'Player 2',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	arv.player2Title.x( cCanvasWidth/4 * 3  - arv.player2Title.getTextWidth()/2 );
+	arv.player2Title.y( cCanvasHeight * 0.1 );
+
+	arv.p2c1 =  new Konva.Text({
+		text: 'A',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	arv.p2c1.x( cCanvasWidth/4 * 3 - arv.p2c1.getTextWidth()/2 - arv.p2c1.getTextWidth() );
+	arv.p2c1.y( cCanvasHeight / 2 );
+
+	arv.p2c2 =  new Konva.Text({
+		text: 'A',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	arv.p2c2.x( cCanvasWidth/4 * 3 - arv.p2c2.getTextWidth()/2 );
+	arv.p2c2.y( cCanvasHeight / 2 );
+
+	arv.p2c3 =  new Konva.Text({
+		text: 'A',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+	});
+	arv.p2c3.x( cCanvasWidth/4 * 3 - arv.p2c3.getTextWidth()/2 + arv.p2c3.getTextWidth() );
+	arv.p2c3.y( cCanvasHeight / 2 );
+
+
+
+	var arv = allResultVisuals.frontLayer;
+
+	arv.p1block = new Konva.Rect({
+		x: allResultVisuals.midLayer.p1c1.x(),
+		y: allResultVisuals.midLayer.p1c1.y(),
+		width: allResultVisuals.midLayer.p1c1.getTextWidth(),
+		height: allResultVisuals.midLayer.p1c1.getTextHeight(),
+		fill: 'green'
+	});
+
+	arv.p2block = new Konva.Rect({
+		x: allResultVisuals.midLayer.p2c1.x(),
+		y: allResultVisuals.midLayer.p2c1.y(),
+		width: allResultVisuals.midLayer.p2c1.getTextWidth(),
+		height: allResultVisuals.midLayer.p2c1.getTextHeight(),
+		fill: 'green'
+	});
 
 } //end setupResultVisuals
 

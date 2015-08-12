@@ -13,9 +13,8 @@ function main() {
 	setupGameVisuals();
 	setupResultVisuals();
 
-	placeScreenVisuals( allMenuVisuals ); //display menu visuals
+	prepandSwitchToMenu();
 
-	gameState = gsMenu;
 	setInterval(mainUpdater, cMainUpdaterInterval); //start the main update
 
 } //end main

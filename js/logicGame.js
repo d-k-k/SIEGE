@@ -44,6 +44,16 @@ function logicGame() {
 		console.log(allPlayers[0].score, allPlayers[1].score);
         prepandSwitchToResult();
     } 
+
+    //check if all invaders are dead
+    var allDead = true;
+    for(var i = 0; i < allInvaders.length; i++) {
+        if(allInvaders[i].vSprite.animation() !== 'empty' ) { allDead = false; }
+    }
+    if(allDead && is2ndWaveAvailable) {
+        is2ndWaveAvailable = false;
+        prepGameInvaderPosition();
+    }
     
     onscreenVisuals();
 } //end logicGame
@@ -68,8 +78,9 @@ function overlap(object1, object2)
 
 /* Updates all On-Screen Visuals */
 function onscreenVisuals() {
- /* TODO: updateTime(); 
-          updatescore(); */
+    allGameVisuals.frontLayer.p1score.text('Score: ' + allPlayers[0].score);
+    allGameVisuals.frontLayer.p2score.text('Score: ' + allPlayers[1].score);
+
 } //end onscreenVisuals
 
 /* Determines type and creates appropriate effect */
@@ -83,7 +94,7 @@ function collisionEffects(object1, object2) {
             if(object2.type == "invaderBullet" || object2.type == "playerBullet") {
                 object2.death();
 				if(object2.type == "playerBullet") {
-					object2.Owner.score++;
+					object2.Owner.score+=5;
 				}
             }
         }
@@ -92,7 +103,7 @@ function collisionEffects(object1, object2) {
     		if(object1.type == "invaderBullet" || object1.type == "playerBullet") {
                 object1.death();
 				if(object1.type == "playerBullet") {
-					object1.Owner.score++;
+					object1.Owner.score+=5;
 				}
             }
         }
