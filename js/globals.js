@@ -60,8 +60,8 @@ var cP2StartingY = cCanvasHeight/2 - cPlayerHeight/2;
 //invader globals to control spawn
 var cInvSpawnHeightGap = cInvaderHeight/2; //basically shots get a half miss zone.
 var cInvSpawnWidthGap = cInvaderWidth/2; 
-var cInvRowSize = 2;//9; //these numbers can and will be changed.
-var cInvColSize = 2;//5;
+var cInvRowSize = 9; //these numbers can and will be changed.
+var cInvColSize = 5;
 var cInvRightSpawnStartX = cCanvasWidth/2 + cInvaderWidth; //the right invader starts off 1 width away from the middle
 var cInvRightSpawnStartY = 94;
 var cInvLeftSpawnStartX = cCanvasWidth/2 - cInvaderWidth;

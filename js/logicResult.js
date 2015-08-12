@@ -29,9 +29,7 @@ function logicResult() {
 		}
 		if(lockInCounter1 == 3) {
 			p1name += String.fromCharCode(charPos1);
-			leaderBoard[newScoreIndex1].name = p1name;
 			nextChar1 = false;
-			console.log("p1name: " + leaderBoard[newScoreIndex1].name + " p1score: " + leaderBoard[newScoreIndex1].score);
 		}
 	}
 				
@@ -49,32 +47,16 @@ function logicResult() {
 		}
 		if(lockInCounter2 == 3) {
 			p2name += String.fromCharCode(charPos2);
-			leaderBoard[newScoreIndex2].name = p2name;
 			nextChar2 = false;
-			console.log("p2name: " + leaderBoard[newScoreIndex2].name + " p2score: " + leaderBoard[newScoreIndex2].score);
 		}
 	}
 
 	//Waiting for p1 name input
-	if(waitingForInput1 && !waitingForInput2) {
-		if(lockInCounter1 == 3) {
-			prepandSwitchToMenu();
-		}
-	}
-	//waiting for p2 name input
-	else if(waitingForInput2 && !waitingForInput1) {
-		if(lockInCounter2 == 3) {
-			prepandSwitchToMenu();
-		}
-	}
-	//waiting for both p1 and p2 name input
-	else if(waitingForInput1 && waitingForInput2) {
-		if(lockInCounter1 == 3 && lockInCounter2 == 3) {
-			prepandSwitchToMenu();
-		}
-	}
-	//no new high scores, so just switch after enter is hit
-	else if(!waitingForInput1 && !waitingForInput2) {
+	if(lockInCounter1 >= 3 && lockInCounter2 >= 3) {
+		leaderBoard[newScoreIndex1].name = p1name;
+		console.log("p1name: " + leaderBoard[newScoreIndex1].name + " p1score: " + leaderBoard[newScoreIndex1].score);
+		leaderBoard[newScoreIndex2].name = p2name;
+		console.log("p2name: " + leaderBoard[newScoreIndex2].name + " p2score: " + leaderBoard[newScoreIndex2].score);
 		prepandSwitchToMenu();
 	}
 
@@ -91,8 +73,8 @@ function prepandSwitchToResult() {
 			//new high-score found, add to leaderboard!
             if(allPlayers[i].score >= leaderBoard[j].score) {
                 //Shift all leaderBoard scores and insert new high-score
-                for(var k = j + 1; k < leaderBoard.length; k++) {
-                    leaderBoard[k] = leaderBoard[k - 1];
+                for(var k = leaderBoard.length -1; k > 0; k--) {
+                    leaderBoard[k].score = leaderBoard[k - 1].score;
                 }
 				if(i == 0) {
 					newScoreIndex1 = j;
@@ -103,9 +85,13 @@ function prepandSwitchToResult() {
 					waitingForInput2 = true;
 				}
                 leaderBoard[j].score = allPlayers[i].score; 
+                break;
             } //score is entered
         } //end looping through leaderboard
-    } //end looping through players 
+    } //end looping through players
+
+    lockInCounter1 = 0;
+    lockInCounter2 = 0;
     
     resultScreenVars.lastTime = Date.now();
 } //end prepandSwitchToResult

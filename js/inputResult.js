@@ -36,6 +36,11 @@ function inputResult() {
 		p1SKeyUp = true;
 	}
 
+	if(lockInCounter1 === 0){ allResultVisuals.midLayer.p1c1.text( String.fromCharCode(charPos1) );}
+	if(lockInCounter1 === 1){ allResultVisuals.midLayer.p1c2.text( String.fromCharCode(charPos1) );}
+	if(lockInCounter1 === 2){ allResultVisuals.midLayer.p1c3.text( String.fromCharCode(charPos1) );}
+
+
 	//i
 	if(keyboardKeys[73] === 'down') { 
 		if(p2IKeyUp) {
@@ -69,6 +74,11 @@ function inputResult() {
 	else {
 		p2KKeyUp = true;
 	}
+
+
+	if(lockInCounter2 == 0){ allResultVisuals.midLayer.p2c1.text( String.fromCharCode(charPos2) );}
+	if(lockInCounter2 == 1){ allResultVisuals.midLayer.p2c2.text( String.fromCharCode(charPos2) );}
+	if(lockInCounter2 == 2){ allResultVisuals.midLayer.p2c3.text( String.fromCharCode(charPos2) );}
 	
 	//D
 	if(keyboardKeys[68] === 'down') { 
@@ -76,6 +86,9 @@ function inputResult() {
 			lockInCounter1++;
 			nextChar1 = true;
 			console.log("P1: Locking in");
+			if(lockInCounter1 === 0){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c1.x() );}
+			if(lockInCounter1 === 1){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c2.x() );}
+			if(lockInCounter1 === 2){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c3.x() );}
 		}
 		p1DKeyUp = false;
 	}
@@ -89,6 +102,9 @@ function inputResult() {
 			lockInCounter2++;
 			nextChar2 = true;
 			console.log("P2: Locking in"); 
+			if(lockInCounter2 === 0){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c1.x() );}
+			if(lockInCounter2 === 1){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c2.x() );}
+			if(lockInCounter2 === 2){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c3.x() );}
 		}
 		p2JKeyUp = false;
 	}
