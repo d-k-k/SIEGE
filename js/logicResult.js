@@ -57,7 +57,21 @@ function logicResult() {
         console.log("p1name: " + leaderBoard[newScoreIndex1].name + " p1score: " + leaderBoard[newScoreIndex1].score);
         leaderBoard[newScoreIndex2].name = p2name;
         console.log("p2name: " + leaderBoard[newScoreIndex2].name + " p2score: " + leaderBoard[newScoreIndex2].score);
-        prepandSwitchToMenu();
+
+
+        var str;
+        for(var i = 0; i < leaderBoard.length; i++) {
+            console.log( 'board:' + leaderBoard[i].name + ',' + leaderBoard[i].score );
+            str = 'name'+(i+1)+'='+ leaderBoard[i].name;
+            document.cookie = str;
+            str = 'score'+(i+1)+'='+ leaderBoard[i].score;
+            document.cookie = str;
+        }
+
+        //alert(document.cookie);
+
+        document.location.reload(true);
+
     }
 
 } //end logicResult
