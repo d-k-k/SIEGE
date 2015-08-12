@@ -85,10 +85,12 @@ function inputResult() {
 		if(p1DKeyUp) {
 			lockInCounter1++;
 			nextChar1 = true;
-			console.log("P1: Locking in");
+			//console.log("P1: Locking in with value:" + lockInCounter1);
 			if(lockInCounter1 === 0){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c1.x() );}
 			if(lockInCounter1 === 1){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c2.x() );}
 			if(lockInCounter1 === 2){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c3.x() );}
+			if(lockInCounter1 >= 3){ allResultVisuals.frontLayer.p1block.x( -100 );}
+			charPos1 = 65;
 		}
 		p1DKeyUp = false;
 	}
@@ -101,10 +103,12 @@ function inputResult() {
 		if(p2JKeyUp) {
 			lockInCounter2++;
 			nextChar2 = true;
-			console.log("P2: Locking in"); 
+			//console.log("P2: Locking in with value:" + lockInCounter2); 
 			if(lockInCounter2 === 0){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c1.x() );}
 			if(lockInCounter2 === 1){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c2.x() );}
 			if(lockInCounter2 === 2){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c3.x() );}
+			if(lockInCounter2 >= 3){ allResultVisuals.frontLayer.p2block.x( -100 );}
+			charPos2 = 65;
 		}
 		p2JKeyUp = false;
 	}
@@ -208,10 +212,12 @@ function inputResult() {
 		if(p1AButtonUp) {
 			lockInCounter1++;
 			nextChar1 = true;
-			console.log("P1: Locking in");
+			//console.log("P1: Locking in with value:" + lockInCounter1);
 			if(lockInCounter1 === 0){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c1.x() );}
 			if(lockInCounter1 === 1){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c2.x() );}
 			if(lockInCounter1 === 2){ allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c3.x() );}
+			if(lockInCounter1 >= 3){ allResultVisuals.frontLayer.p1block.x( -100 );}
+			charPos1 = 65;
 		}
 		p1AButtonUp = false;
 	}
@@ -224,10 +230,12 @@ function inputResult() {
 		if(p2AButtonUp) {
 			lockInCounter2++;
 			nextChar2 = true;
-			console.log("P2: Locking in"); 
+			//console.log("P2: Locking in with value:" + lockInCounter2); 
 			if(lockInCounter2 === 0){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c1.x() );}
 			if(lockInCounter2 === 1){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c2.x() );}
 			if(lockInCounter2 === 2){ allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c3.x() );}
+			if(lockInCounter2 >= 3){ allResultVisuals.frontLayer.p2block.x( -100 );}
+			charPos2 = 65;
 		}
 		p2AButtonUp = false;
 	}

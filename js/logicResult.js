@@ -92,6 +92,10 @@ function prepandSwitchToResult() {
 
     lockInCounter1 = 0;
     lockInCounter2 = 0;
+    p1name = "";
+    p2name = "";
+    allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c1.x() );
+    allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c1.x() );
     
     resultScreenVars.lastTime = Date.now();
 } //end prepandSwitchToResult
