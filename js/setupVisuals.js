@@ -347,6 +347,16 @@ function setupResultVisuals() {
 		height: allResultVisuals.midLayer.p2c1.getTextHeight(),
 		fill: 'green'
 	});
+    
+   allResultVisuals.midLayer.winner = new Konva.Text({
+        text: 'Testing',
+		fontSize: 30,
+		fontFamily: 'Arial',
+		fill: 'green'
+    });
+    
+    allResultVisuals.midLayer.winner.x( cCanvasWidth/2 - allResultVisuals.midLayer.winner.getTextWidth()/2 );
+    allResultVisuals.midLayer.winner.y( cCanvasHeight/4 - allResultVisuals.midLayer.winner.getTextHeight()/2);
 
 } //end setupResultVisuals
 

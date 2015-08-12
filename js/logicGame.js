@@ -41,8 +41,16 @@ function logicGame() {
     
     /* Checks for endgame condition, changes to results if true */
     if(!allPlayers[0].isAlive || !allPlayers[1].isAlive) {
-		console.log(allPlayers[0].score, allPlayers[1].score);
-        prepandSwitchToResult();
+        
+		//console.log(allPlayers[0].score, allPlayers[1].score);
+        var winner; 
+        if (allPlayers[0].isAlive) {
+            winner = "Player 2 Got PWN'd";
+        }
+        else {
+            winnder = "Player 1 Got PWN'd";
+        }
+        prepandSwitchToResult(winner);
     } 
 
     //check if all invaders are dead

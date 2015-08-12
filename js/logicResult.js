@@ -63,7 +63,7 @@ function logicResult() {
 } //end logicResult
 
 /* Preps the game */
-function prepandSwitchToResult() {
+function prepandSwitchToResult(winner) {
 
   placeScreenVisuals( allResultVisuals );
   gameState = gsResult;
@@ -96,6 +96,11 @@ function prepandSwitchToResult() {
     p2name = "";
     allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c1.x() );
     allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c1.x() );
+    
+    allResultVisuals.midLayer.winner.text( winner );
+    
+    allResultVisuals.midLayer.winner.x( cCanvasWidth/2 - allResultVisuals.midLayer.winner.getTextWidth()/2 );
+    
     
     resultScreenVars.lastTime = Date.now();
 } //end prepandSwitchToResult
