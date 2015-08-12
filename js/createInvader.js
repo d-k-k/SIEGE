@@ -196,6 +196,8 @@ function invaderMoveAI() {
 
     var maxY = 0;
     var minY = cCanvasHeight;
+
+    var needToGoDown = false;
     for (var i = 0; i < allInvaders.length; i++) {
         var alien = allInvaders[i];
         if (alien.isAlive === false) {
@@ -204,11 +206,14 @@ function invaderMoveAI() {
         alien.y += alien.height * alien.moveDirection;
         maxY = Math.max(maxY, alien.y);
         minY = Math.min(minY, alien.y);
+
+        if( alien.y  >= cCanvasHeight - cInvaderHeight * 1.5) { needToGoDown = true; }
+        if( alien.y  <= cInvaderHeight * 1.5 ) { needToGoDown = true; }
     }
     //console.log("Min Y: " + minY + ", Max Y: " + maxY);
     
     // Determines if any of the invaders are going beyond the 30px margin
-    if (maxY >= cCanvasHeight - cInvaderHeight || minY <= cInvaderHeight * 1.5 ) {
+    if ( needToGoDown ||  (maxY >= cCanvasHeight - cInvaderHeight) || (minY <= cInvaderHeight * 1.5) ) {
         for (var i = 0; i < allInvaders.length; i++) {
             if (alien.isAlive === false) {
                 continue;

@@ -73,7 +73,7 @@ function prepandSwitchToResult() {
             //new high-score found, add to leaderboard!
             if(allPlayers[i].score >= leaderBoard[j].score) {
                 //Shift all leaderBoard scores and insert new high-score
-                for(var k = leaderBoard.length -1; k > 0; k--) {
+                for(var k = leaderBoard.length -1; k > j; k--) {
                     leaderBoard[k].score = leaderBoard[k - 1].score;
                 }
                 if(i == 0) {
@@ -92,6 +92,10 @@ function prepandSwitchToResult() {
 
     lockInCounter1 = 0;
     lockInCounter2 = 0;
+    p1name = "";
+    p2name = "";
+    allResultVisuals.frontLayer.p1block.x( allResultVisuals.midLayer.p1c1.x() );
+    allResultVisuals.frontLayer.p2block.x( allResultVisuals.midLayer.p2c1.x() );
     
     resultScreenVars.lastTime = Date.now();
 } //end prepandSwitchToResult
