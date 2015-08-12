@@ -69,6 +69,9 @@ function setupSpriteImageObjects() {
 	allSpriteObjects['enemy1'] = new Image();
 	allSpriteObjects['enemy1'].src = 'assets/enemy_1_animation.png';
 
+	allSpriteObjects['enemy2'] = new Image();
+	allSpriteObjects['enemy2'].src = 'assets/enemy_suicide.png';
+
 } //end setupSpriteImageObjects
 
 

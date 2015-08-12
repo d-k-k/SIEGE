@@ -63,6 +63,14 @@ function createInvader(invadeType, shootingDirection) {
     Sprite removal needs to be added.
     */
 	ent.death = function () {
+
+		if( true ) {
+			this.spawnAt(this.x, this.y);
+			this.vSprite.image( allSpriteObjects['enemy2'] );
+
+			return;
+		}
+
 		this.isAlive = false;//set isAlive to false
 		this.direction = "none";//set direction to none
 		if(this.invaderType == 1) {//if the invader that was killed was a normal invader
