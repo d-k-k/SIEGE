@@ -27,16 +27,16 @@ function inputGameGamePad() {
 		allPlayers[0].moveDirection = 'up';
 	}
 	else { allPlayers[0].moveDirection = 'none';}*/
-	if (gp.axes[1] > .8) {//down
+	if (gp.axes[1] > .9 || gp.axes[0] > .9) {//down
 		allPlayers[0].moveDirection = 'down';
-	} else if(gp.axes[1] < -.8) {//up
+	} else if(gp.axes[1] < -.9 || gp.axes[0] < -.9) {//up
 		allPlayers[0].moveDirection = 'up';
 	}
 	else { allPlayers[0].moveDirection = 'none';}
 	
-	if(gp2.axes[1] > 0.8) {//right
+	if(gp2.axes[1] > 0.9 || gp2.axes[0] < -.9) {//right
 		allPlayers[1].moveDirection = 'down';
-	} else if(gp2.axes[1] < -0.8) {//up
+	} else if(gp2.axes[1] < -0.9 || gp2.axes[0] > .9) {//up
 		allPlayers[1].moveDirection = 'up';
 	}
 	else { allPlayers[1].moveDirection = 'none';}
