@@ -46,10 +46,24 @@ function inputMenuGamePad() {
 		return;
 	}*/
 	var gp = gamepads[0];
-	if (buttonPressed(gp.buttons[0])) {//down
+	var gp2 = gamepads[1];
+	
+	
+	for (var i = 0 ; i < gp.buttons.length ; i++) {
+		if (buttonPressed(gp.buttons[i])) {
+			for (var j = 0 ; j < gp2.buttons.length ; j++) {
+				if (buttonPressed(gp2.buttons[j])) {
+					prepAndSwitchToGame();
+				}
+			}
+		}
+	}
+	
+	/*if (buttonPressed(gp.buttons[0]) && buttonPressed(gp2.buttons[0])) {//down
 		prepAndSwitchToGame();
 	}
-	/*if( keyboardKeys[13] === 'down' ) {
+	/*
+	if( keyboardKeys[13] === 'down' ) {
 		prepAndSwitchToGame();
 	}*/
 	

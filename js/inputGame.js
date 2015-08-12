@@ -16,7 +16,8 @@ function inputGameGamePad() {
 		return;
 	}
 	var gp = gamepads[0];
-	if(!gp) {
+	var gp2 = gamepads[1];
+	if(!gp || !gp2) {
 		return;
 	}
 
@@ -33,9 +34,9 @@ function inputGameGamePad() {
 	}
 	else { allPlayers[0].moveDirection = 'none';}
 	
-	if(gp.axes[3] > 0.8) {//right
+	if(gp2.axes[1] > 0.8) {//right
 		allPlayers[1].moveDirection = 'down';
-	} else if(gp.axes[3] < -0.8) {//up
+	} else if(gp2.axes[1] < -0.8) {//up
 		allPlayers[1].moveDirection = 'up';
 	}
 	else { allPlayers[1].moveDirection = 'none';}
@@ -45,7 +46,7 @@ function inputGameGamePad() {
 	if(buttonPressed(gp.buttons[0])) {
 		allPlayers[0].shoot();
 	}
-	if(buttonPressed(gp.buttons[3])) {
+	if(buttonPressed(gp2.buttons[0])) {
 		allPlayers[1].shoot();
 	}
 	

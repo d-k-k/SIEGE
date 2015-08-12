@@ -135,6 +135,9 @@ var p2IKeyUp = false;
 var p2KKeyUp = false;
 var p2JKeyUp = false;
 
+var p1PadTopUp = false;
+var p1PadBottomUp = false;
+
 var cInvaderMoveDelayTime = 1000;
 var invaderLastMoveTime = null;
 var invaderLastShotTime = null;
