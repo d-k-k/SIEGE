@@ -28,7 +28,7 @@ function logicGame() {
             allEntities[i].shoot();
         }
         for(var j = 0; j < allEntities.length; j++) {
-            if(allEntities[j].isAlive) {
+            if(allEntities[j].isAlive && allEntities[i].isAlive) {
                 if(allEntities[i] == allEntities[j]) {
                     continue; //continue loop if same entity
                 }
